@@ -1,0 +1,96 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="iFrame testing">
+  <meta name="author" content="more-ginger">
+  <style>
+      .general-container {
+          width: 624px;
+          height: 624px;
+          margin: 0 auto;
+      }
+      .iframe-mobile {
+          width: 300px;
+      }
+
+      .iframe-desktop {
+          width: 624px;
+          min-height: 624px;
+      }
+
+      .iframe-fullwidth {
+          width: 909px;
+      }
+      iframe {
+          background-color: white;
+          border: 0.5px dashed black;
+          /* border: none; */
+          width: 100%;
+          min-height: 624px;
+    }
+
+  .output {
+      background: #eee;
+  }
+  </style>
+
+</head>
+
+  <body>
+      <div class="general-container">
+          <div class="title"><h1>One title</h1></div>
+          <div class="text-paragraph">
+              <p>
+                  We’ve put the script element at the bottom of our page to conform
+                  to best practices for embedding JavaScript. This has to do with
+                  the page-loading speed; when a browser encounters a script,
+                  it will pause downloading and rendering the rest of the page while
+                  it parses the script. This results in the page appearing to load
+                  much more slowly when large scripts are included at the top of the
+                  page before any content. It’s why most scripts should be placed at
+                  the very bottom of the page, so that they’ll only be parsed after
+                  the rest of the page has loaded.
+            </p>
+          </div>
+          <div class="title"><h1>624 x 624</h1></div>
+          <div class="iframe-desktop">
+              <iframe id="inlineFrameExample"
+              title="Inline Frame Example"
+              src="http://localhost:3000/micro-article">
+              </iframe>
+          </div>
+        <div class="title"><h1>300 x 624</h1></div>
+          <div class="iframe-mobile">
+              <iframe id="inlineFrameExample"
+              title="Inline Frame Example"
+              src="http://localhost:3000/micro-article">
+              </iframe>
+          </div>
+          <div class="title"><h1>909 x 624</h1></div>
+          <div class="iframe-fullwidth">
+              <iframe id="inlineFrameExample"
+              title="Inline Frame Example"
+              src="http://localhost:3000/micro-article">
+              </iframe>
+          </div>
+          <div class="text-paragraph">
+              <p>
+                  We’ve put the script element at the bottom of our page to conform
+                  to best practices for embedding JavaScript. This has to do with
+                  the page-loading speed; when a browser encounters a script,
+                  it will pause downloading and rendering the rest of the page while
+                  it parses the script. This results in the page appearing to load
+                  much more slowly when large scripts are included at the top of the
+                  page before any content. It’s why most scripts should be placed at
+                  the very bottom of the page, so that they’ll only be parsed after
+                  the rest of the page has loaded.
+            </p>
+          </div>
+      </div>
+    <!-- <script src="js/scripts.js"></script> -->
+  </body>
+</html>
