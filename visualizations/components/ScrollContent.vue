@@ -3,12 +3,18 @@
     <div class="inner">
       <div v-if="scrollyTelling" class="scroll-inner-container">
         <article ref="scrolling" class="scrollable-div">
-          <!-- <Step :step="0">
+          <Step :step="0">
             I am number 0
           </Step>
           <Step :step="1">
             I am number 1
-          </Step> -->
+          </Step>
+          <Step :step="2">
+            I am number 2
+          </Step>
+          <Step :step="3">
+            I am number 3
+          </Step>
         </article>
       </div>
       <div
@@ -21,7 +27,7 @@
           class="title-container"
         >
           <h3>Countries’ basic stress level score</h3>
-          <p>Click or scroll right and left to read</p>
+          <p>Click or scroll right and left to read ({{ step }})</p>
         </div>
         <slot>
           <div>
@@ -34,11 +40,11 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-// import Step from './Step.vue'
+import Step from './Step.vue'
 export default {
   name: 'ScrollContent',
   components: {
-    // Step
+    Step
   },
   props: {
     isMobile: {
@@ -64,8 +70,7 @@ export default {
 
   position: absolute;
   top: 0;
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
 
   .inner {
     position: sticky;
@@ -76,13 +81,8 @@ export default {
 
       &.mobile-view {
         .title-container {
-            h3 {
-              font-size: 20px;
-            }
-
-            h5 {
-              font-size: 12px;
-            }
+            h3 { font-size: 20px; }
+            h5 { font-size: 12px; }
           }
         }
 
@@ -100,8 +100,7 @@ export default {
       }
       position: fixed;
       top: 0%;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
 
       .title-container {
         position: absolute;
@@ -112,17 +111,15 @@ export default {
     .scroll-inner-container {
       z-index: 1;
       position: sticky;
-      width: 100%;
-      height: 100%;
-      overflow-y: scroll;
-      pointer-events: none;
+      width: 100%; height: 100%;
+      overflow-x: scroll;
+      // this conflict with scrolling. Need a fix for later.
+      // pointer-events: none;
 
       padding: 1.5rem 1rem 1.5rem 1rem;
 
       .scrollable-div {
-        // width: 4000px;
-        height: 100%;
-        font-size: 100px;
+        height: 50%;
         display: inline-flex;
        }
     }

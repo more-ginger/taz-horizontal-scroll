@@ -26,7 +26,6 @@ export default {
     const { $refs, step, observerOptions } = this
     const observer = new window.IntersectionObserver((entries) => {
       if (entries.filter(entry => entry.isIntersecting).length < 1) { return }
-      // console.log(this.$parent.$emit('step', step))
       this.$store.commit('updateGlobalStep', step)
       this.$parent.$emit('step', step)
     }, observerOptions)
@@ -38,25 +37,24 @@ export default {
 <style lang="scss" scoped>
 .step {
   border-right: 1px dashed black;
-  // height: 90vh;
-  width: 1000px;
-  display: flex;
+  width: 100vw;
+  display: inline-table;
   flex-direction: row;
+  padding: 0 25vw 0 5vw;
 
   .inner-step {
 
-    max-width: 460px;
-    background: transparentize(white, 0.02);
+    width: 50%;
+    background: rgba(255, 255, 255, 0.6);
     border: 1px solid black;
     padding: 10px;
-    margin-left: 5%;
+    margin-top: 50%;
 
     &.center {
       align-self: center;
     }
     p {
       font-size: 16px;
-      // vertical-align: center;
     }
   }
 }

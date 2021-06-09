@@ -19,10 +19,6 @@ export default {
       type: Array,
       default () { return [] }
     }
-    // isMobile: {
-    //   type: Boolean,
-    //   default: false
-    // }
   },
   data () {
     return {
@@ -48,5 +44,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-</style>
