@@ -1,37 +1,29 @@
 <template>
   <ScrollContainer>
     <ScrollContent>
-      <!-- {{ slotProps }} -->
-      <Cartogram />
+      <Visualizations :water-stress="waterStress" />
     </ScrollContent>
   </ScrollContainer>
 </template>
 <script>
-// import Scrollama from 'scrollama'
 import ScrollContainer from '../components/ScrollContainer.vue'
 import ScrollContent from '../components/ScrollContent.vue'
-import Cartogram from '../components/Cartogram.vue'
+import Visualizations from '../components/Visualizations.vue'
 
 export default {
   name: 'MicroArticle',
   components: {
     ScrollContainer,
     ScrollContent,
-    Cartogram
+    Visualizations
   },
-  data () {
-    return {
-      step: 0
-    }
+  async asyncData ({ $content, params }) {
+    const waterStress = await $content(params.slug || 'data').fetch()
+    return { waterStress }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.visualization-outer {
-  min-height: 100vh;
-//   height: 624px;
-  width: 100%;
-//   background-color: lightblue;
-}
+.visualization-outer { max-width: 1240px; width: 100%; }
 </style>

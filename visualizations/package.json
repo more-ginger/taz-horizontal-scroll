@@ -23,7 +23,8 @@
     "node-sass": "^5.0.0",
     "nuxt": "^2.15.3",
     "scrollama": "^2.2.2",
-    "scrollmagic": "^2.0.8"
+    "scrollmagic": "^2.0.8",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^6.0.0",

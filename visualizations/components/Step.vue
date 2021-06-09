@@ -1,8 +1,8 @@
 <template>
   <div ref="intersect" class="step intersection-observer">
-    <!-- <div class="inner-step"> -->
-    <slot />
-    <!-- </div> -->
+    <div class="inner-step">
+      <slot />
+    </div>
   </div>
 </template>
 <script>

@@ -1,46 +1,29 @@
 <template>
   <div class="scroll-content">
     <div class="inner">
-      <div class="scroll-inner-container">
+      <div v-if="scrollyTelling" class="scroll-inner-container">
         <article ref="scrolling" class="scrollable-div">
-          <Step :step="0">
-            <!-- I am number 0 -->
+          <!-- <Step :step="0">
+            I am number 0
           </Step>
           <Step :step="1">
-            <!-- I am number 1 -->
-            <div class="inner-step center">
-              <p>
-                Amami ancora Fallo dolcemente Un anno, un mese, un'ora Perdutamente /
-                Amarti mi consola Le notti bianche / Qualcosa che riempie Vecchie storie fumanti /
-                Amarti mi consola Mi dà allegria Che vuoi farci, è la vita È la vita la mia Amami
-                ancora Fallo dolcemente Un anno, un mese, un'ora Perdutamente Amami ancora Fallo
-                dolcemente Solo per un'ora Perdutamente
-              </p>
-            </div>
-          </Step>
-          <Step :step="2">
-            <!-- I am number 2 -->
-            <div class="inner-step center">
-              <p>
-                Hello again.
-              </p>
-            </div>
-          </Step>
-          <Step :step="3">
-            <!-- I am number 3 -->
-          </Step>
-          <Step :step="4">
-            <!-- I am number 4 -->
-          </Step>
+            I am number 1
+          </Step> -->
         </article>
       </div>
-      <div class="visualization-container">
-        <div class="title-container">
-          <h3>Visualization title that sticks</h3>
-          <h5>Subtitle that sticks</h5>
-          <!-- Scroller is at {{ step }} -->
+      <div
+        class="visualization-container"
+        :class="[
+          {'notHorizontal': scrollyTelling === false},
+        ]"
+      >
+        <div
+          class="title-container"
+        >
+          <h3>Countries’ basic stress level score</h3>
+          <p>Click or scroll right and left to read</p>
         </div>
-        <slot :step="step">
+        <slot>
           <div>
             <h1>{{ step }}</h1>
           </div>
@@ -50,19 +33,21 @@
   </div>
 </template>
 <script>
-import Step from './Step.vue'
+import { mapState } from 'vuex'
+// import Step from './Step.vue'
 export default {
   name: 'ScrollContent',
   components: {
-    Step
+    // Step
   },
-  data () {
-    return {
-      step: 0
+  props: {
+    isMobile: {
+      type: Boolean,
+      default: false
     }
   },
-  mounted () {
-    this.$on('step', (step) => { this.step = step })
+  computed: {
+    ...mapState({ step: 'globalStep', scrollyTelling: 'scrollyTellingStatus' })
   }
 }
 
@@ -81,42 +66,64 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  // background-color: peachpuff;
 
   .inner {
-    // border-bottom: 1px solid black;
-    // background-color: pink;
     position: sticky;
     top: 0px;
     height: 100vh;
 
     .visualization-container {
+
+      &.mobile-view {
+        .title-container {
+            h3 {
+              font-size: 20px;
+            }
+
+            h5 {
+              font-size: 12px;
+            }
+          }
+        }
+
+      &.notHorizontal {
+        position: relative;
+
+        .title-container {
+          position:fixed;
+          background-color: rgba(255, 255, 255, 1);
+          border-radius: 2.5px;
+          width: 95%;
+          padding: 10px;
+
+        }
+      }
       position: fixed;
       top: 0%;
       width: 100%;
       height: 100%;
 
       .title-container {
-        margin: 10px;
+        position: absolute;
+        margin: 2.5%;
       }
     }
 
     .scroll-inner-container {
       z-index: 1;
-      // background-color: royalblue;
       position: sticky;
       width: 100%;
       height: 100%;
-      // overflow-y: scroll;
+      overflow-y: scroll;
+      pointer-events: none;
 
       padding: 1.5rem 1rem 1.5rem 1rem;
 
       .scrollable-div {
-        width: 4000px;
+        // width: 4000px;
         height: 100%;
         font-size: 100px;
         display: inline-flex;
-        // padding-left: 10%;
        }
     }
   }
