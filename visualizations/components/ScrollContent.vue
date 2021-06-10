@@ -4,28 +4,32 @@
       <div v-if="scrollyTelling" class="scroll-inner-container">
         <article ref="scrolling" class="scrollable-div">
           <Step :step="0">
-            I am number 0
+            Everything is visible
           </Step>
           <Step :step="1">
-            I am number 1
+            Focus on Middle East and North Africa
           </Step>
           <Step :step="2">
-            I am number 2
+            Focus on Central Africa
           </Step>
           <Step :step="3">
-            I am number 3
+            Focus on Nile area
+          </Step>
+          <Step :step="4">
+            Focus on Bolivia and Colombia
+          </Step>
+          <Step :step="5" class="last">
+            Everything is visible (again)
           </Step>
         </article>
       </div>
       <div
         class="visualization-container"
         :class="[
-          {'notHorizontal': scrollyTelling === false},
+          {'notHorizontal': scrollyTelling === false}
         ]"
       >
-        <div
-          class="title-container"
-        >
+        <div class="title-container">
           <h3>Countries’ basic stress level score</h3>
           <p>Click or scroll right and left to read ({{ step }})</p>
         </div>
@@ -112,15 +116,19 @@ export default {
       z-index: 1;
       position: sticky;
       width: 100%; height: 100%;
-      overflow-x: scroll;
-      // this conflict with scrolling. Need a fix for later.
-      // pointer-events: none;
+
+      pointer-events: none;
 
       padding: 1.5rem 1rem 1.5rem 1rem;
 
       .scrollable-div {
         height: 50%;
         display: inline-flex;
+        padding: 0 40% 0 5%;
+
+        .last {
+          margin-right: 100vw;
+        }
        }
     }
   }

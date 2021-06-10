@@ -12,7 +12,7 @@
       <text x="0px" y="0px">
         Water stress score
       </text>
-      <rect width="230px" height="19px" y="5px" fill="url(#linear-gradient)" />
+      <rect width="230px" height="19px" y="5px" fill="url(#linear-gradient)" rx="10"/>
       <text x="0" y="40px">
         Very low (0)
       </text>
@@ -24,7 +24,7 @@
       <text x="25px" y="14.5px">
         No data
       </text>
-      <rect width="19px" height="19px" x="0" y="0" />
+      <rect width="19px" height="19px" x="0" y="0" rx="10"/>
     </g>
     <g class="country" transform="translate(380, 5)">
       <text x="25px" y="14.5px">

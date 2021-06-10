@@ -36,7 +36,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .step {
-  border-right: 1px dashed black;
+  // border-right: 1px dashed black;
   width: 100vw;
   display: inline-table;
   flex-direction: row;
