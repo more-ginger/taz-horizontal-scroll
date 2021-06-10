@@ -1,9 +1,9 @@
 <template>
-  <g :transform="`translate(${currentLabel.x}, ${currentLabel.y})`">
-    <text x="10" y="10">
-      {{ currentLabel.name }}, {{ currentLabel.score }}
+  <g :transform="`translate(${currentLabel.x - backgroundWidth / 2}, ${currentLabel.y - 10})`">
+    <rect :width="backgroundWidth" height="20" x="9.5" y="-22.5" rx="5" />
+    <text :id="currentLabel.iso_a3" x="12" y="-8.5">
+      {{ currentLabel.name }} / {{ renderedLabel }}
     </text>
-    <rect width="10" height="10" x="9.5" />
   </g>
 </template>
 <script>
@@ -14,17 +14,36 @@ export default {
       type: Object,
       default () { return { } }
     }
+  },
+  data () {
+    return {
+      backgroundWidth: 0
+    }
+  },
+  computed: {
+    renderedLabel () {
+      return this.currentLabel.score === -9999
+        ? 'No Data'
+        : this.currentLabel.score
+    }
+  },
+  mounted () {
+    const textNode = document.getElementById(this.currentLabel.iso_a3)
+    const bb = textNode.getBBox()
+    this.backgroundWidth = bb.width + 2
   }
 }
 </script>
 
 <style lang="scss" scoped>
+g { pointer-events: none; }
 text { font-size: 12px; }
 
-rect { stroke-width: 0.2; }
-
-g {
-    .country > rect { fill: rgb(0, 111, 139); stroke: black }
-    .no-data > rect { fill: white; stroke: black }
+rect {
+  // stroke-width: 0.5;
+  // stroke: black;
+  fill: white;
+  fill-opacity: 0.9;
 }
+
 </style>

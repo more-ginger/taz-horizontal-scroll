@@ -12,7 +12,9 @@
             @mouseenter="toggleCountryLabel(element)"
           />
         </g>
-        <CartogramLabel v-if="isEmpty === false" :current-label="activeCountry" />
+        <g v-for="(element, e) in ParsedData" :key="`${e}-labels`" class="label-group" :class="{toggled: element === activeCountry}">
+          <CartogramLabel :current-label="element" />
+        </g>
       </g>
       <CartogramLegend :transform="transformLegend" />
     </svg>
@@ -110,6 +112,7 @@ export default {
     // Step logic for fill color
     changeFillColor (step, d) {
       const { activeSubRegions, colorScale } = this
+
       const invalid = d.score === -9999 || d.score === null
       const statusArrayLength = activeSubRegions.length
       const currentArrayInMatrix = activeSubRegions[step - 1]
@@ -161,6 +164,16 @@ export default {
       stroke: black;
       transition: fill 0.5s;
     }
+  }
+  g.label-group {
+    opacity: 0;
+    cursor: default;
+    transition: opacity 0.5s;
+  }
+
+  g.toggled {
+    opacity: 1;
+    transition: opacity 0.5s;
   }
 }
 
