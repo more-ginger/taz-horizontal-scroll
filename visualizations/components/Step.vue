@@ -26,6 +26,7 @@ export default {
     const { $refs, step, observerOptions } = this
     const observer = new window.IntersectionObserver((entries) => {
       if (entries.filter(entry => entry.isIntersecting).length < 1) { return }
+      console.log(step)
       this.$store.commit('updateGlobalStep', step)
       this.$parent.$emit('step', step)
     }, observerOptions)

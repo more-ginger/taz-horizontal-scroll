@@ -2,55 +2,10 @@
   <div class="list-container" :class="[{'notHorizontal': scrollyTelling === false}, {'mobile-view': isMobile }]">
     <div class="first-row single-list" :class="{'mobile-view': isMobile }">
       <div class="inner-list">
-        <p class="rank" :class="{'selected': sort === 'rank'}" @click="sort = 'rank'">
-          # Rank
-        </p>
-        <p class="name" :class="{'selected': sort === 'population'}" @click="sort = 'population'">
-          Country (Pop/Mln)
-        </p>
-        <p class="color" :class="{'selected': detail}" @click="detail = !detail">
-          BWS score
-        </p>
-        <div class="subscores" :class="{'visible': detail}">
-          <p class="color">
-            Ind
-          </p>
-          <p class="color">
-            Dom
-          </p>
-          <p class="color">
-            Irr
-          </p>
-          <p class="color">
-            Liv
-          </p>
-        </div>
-      </div>
-    </div>
-    <div v-for="(element, e) in listData" :key="e" class="single-list" :class="{'mobile-view': isMobile }">
-      <div class="inner-list" :style="`background-color:${element.color}`">
-        <p class="rank">
-          # {{ element.rank }}
-        </p>
-        <p class="name" :class="element.iso">
-          <span>{{ element.name }} ({{ element.population }} Mln)</span>
-        </p>
-        <p class="color" :style="`background-color:${element.color}`">
-          {{ element.score }}
-        </p>
-        <div class="subscores" :class="{'visible': detail}">
-          <p class="color" :style="`background-color:${element.INDcolor}`">
-            {{ element.INDscore }}
-          </p>
-          <p class="color" :style="`background-color:${element.DGWcolor}`">
-            {{ element.DGWscore }}
-          </p>
-          <p class="color" :style="`background-color:${element.IRRcolor}`">
-            {{ element.IRRscore }}
-          </p>
-          <p class="color" :style="`background-color:${element.LIVcolor}`">
-            {{ element.LIVscore }}
-          </p>
+        <div v-for="(region, r) in MostAffectedRegions" :key="r" class="region-container">
+          <div v-for="(country, c) in countriesOrderedByImpact[region.d]" :key="c" class="single-country">
+            <img :src="country.path"/>
+          </div>
         </div>
       </div>
     </div>
@@ -58,9 +13,9 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import { scaleDiverging } from 'd3-scale'
-import { rgb } from 'd3-color'
-import { interpolateRgb } from 'd3-interpolate'
+import { uniq, groupBy } from 'lodash'
+import { mean } from 'd3-array'
+// import { scaleLinear } from 'd3-scale'
 
 export default {
   name: 'List',
@@ -82,40 +37,50 @@ export default {
   },
   computed: {
     ...mapState({ step: 'globalStep', scrollyTelling: 'scrollyTellingStatus' }),
-    colorScale () {
-      return scaleDiverging().domain([5, 2.5, 1])
-        .interpolator(interpolateRgb)
-        .range([rgb('#ad7559'), rgb('#ffe7cf'), rgb('#0089b3')])
-    },
-    filteredData () {
-      return this.waterStress.filter(function (element) {
-        return element.score !== null
+    regionsList () {
+      return uniq(this.waterStress.map((d) => {
+        return d.region
+      })).filter((d) => {
+        return d !== undefined
       })
     },
-    listData () {
-      return this.filteredData.map((d, i) => {
+    MostAffectedRegions () {
+      const { regionsList, waterStress } = this
+      const totalScores = regionsList.map((d, i) => {
+        const meanScore = mean(waterStress.map((country) => {
+          if (country.region === d && country.score !== -9999) {
+            return country.score
+          } else { return 0 }
+        }))
+        return { d, meanScore }
+      })
+
+      return totalScores.sort((a, b) => {
+        return b.meanScore - a.meanScore
+      })
+    },
+    countriesOrderedByImpact () {
+      const groupedData = groupBy(this.waterStress, 'region')
+      const obj = {}
+
+      this.MostAffectedRegions.forEach((region) => {
+        const data = groupedData[region.d].sort((a, b) => {
+          return b.score - a.score
+        })
+        obj[region.d] = this.filterData(data)
+      })
+
+      return obj
+    }
+  },
+  methods: {
+    filterData (data) {
+      return data.map((d, i) => {
+        // console.log('../assets/img/' + Math.ceil(d.score) + '.png')
         return {
-          name: this.isMobile ? d.iso_a3 : d.name,
-          color: d.score === -9999 ? '#d1d1d1' : this.colorScale(d.score),
-          score: d.score === -9999 ? d.label : d.score,
-          INDcolor: d.INDGWscore === -9999 ? '#d1d1d1' : this.colorScale(d.INDGWscore),
-          INDscore: d.INDGWscore === -9999 ? d.label : Math.round(d.INDGWscore),
-          DGWcolor: d.DGWscore === -9999 ? '#d1d1d1' : this.colorScale(d.DGWscore),
-          DGWscore: d.DGWscore === -9999 ? d.label : Math.round(d.DGWscore),
-          LIVcolor: d.LIVGWscore === -9999 ? '#d1d1d1' : this.colorScale(d.LIVGWscore),
-          LIVscore: d.LIVGWscore === -9999 ? d.label : Math.round(d.LIVGWscore),
-          IRRcolor: d.IRRGWscore === -9999 ? '#d1d1d1' : this.colorScale(d.IRRGWscore),
-          IRRscore: d.IRRGWscore === -9999 ? d.label : Math.round(d.IRRGWscore),
-          rank: d.rank,
-          iso: d.iso_a3,
-          population: Math.round(d.population_2019_million * 10) / 10
-        }
-      // eslint-disable-next-line array-callback-return
-      }).sort((a, b) => {
-        if (this.sort === 'rank') {
-          return a.rank - b.rank
-        } else if (this.sort === 'population') {
-          return b.population - a.population
+          name: d.name,
+          score: d.score,
+          path: d.score !== -9999 || d.score !== null ? require('../assets/img/' + Math.ceil(d.score) + '.png') : ''
         }
       })
     }
@@ -135,96 +100,25 @@ export default {
     }
 
     .single-list {
-      &.first-row {
-        border-top: 1px solid black;
-        .inner-list {
-          cursor: pointer;
-          p.selected {
-            font-weight: bold;
-          }
-          p.rank, p.name {
-            border-right: 1px dashed black;
-          }
-        }
-      }
-      &.mobile-view {
-        .inner-list {
-          .name {
-            width: 50%;
-          }
+      background-color: aquamarine;
 
-          .rank {
-            width: 20%;
-          }
-
-          .color {
-            width: 30%;
-          }
-        }
-      }
-      border-bottom: 0.5px solid white;
       .inner-list {
-      display: inline-flex;
-      width: 100%;
+        .region-container {
+          margin-top: 10%;
+          background-color: burlywood;
+          display: inline-flex;
 
-      .name, .rank {
-        width: 45%;
-        font-size: 12px;
-        margin-left: 10px;
-        margin-bottom: 0;
-        margin-top: 0;
-        padding: 0;
-        line-height: 30px;
-        span {
-        background-color: rgba(255, 255, 255, 0.9);
-        // box-shadow: 0.5px 0px 5px rgba(0, 0, 0, 0.6);
-        padding: 0 5px;
-        border-radius: 2.5px;
-      }
-      }
+          .single-country {
+            width: 50px;
 
-      .rank {
-        border-right: 0.5px dashed white;
-        width: 10%;
-      }
-
-      .color {
-        border-left:  0.5px dashed white;
-        margin: 0;
-        padding-left:10px;
-        width: 20%;
-        line-height: 30px;
-        font-size: 12px;
-        // mix-blend-mode: difference;
-      }
-
-        .subscores {
-
-          &.visible {
-            width: 25%;
-            opacity: 1;
-            transition: width 2s, opacity 2s;
-            display: inline-flex;
-
-            .color {
-              text-align: center;
-              width: 25%;
-              padding-left: 0;
-              // border-right: 1px dashed black;
+            img {
+              width: 100%;
+              height: auto;
             }
           }
-
-          transition: width 2s, opacity 2s;
-          opacity: 0;
-          width: 0%;
-          display: none;
-
-          .color {
-            padding-left: 0;
-          }
         }
       }
-      }
+    }
   }
 
 </style>

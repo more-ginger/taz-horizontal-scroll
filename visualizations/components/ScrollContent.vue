@@ -79,7 +79,7 @@ export default {
   .inner {
     position: sticky;
     top: 0px;
-    height: 100vh;
+    // height: 100vh;
 
     .visualization-container {
 
