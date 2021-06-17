@@ -2,7 +2,7 @@
   <g>
     <defs>
       <linearGradient id="linear-gradient">
-        <stop offset="0.04" stop-color="#41929f" />
+        <stop offset="0.04" stop-color="#8db3d8" />
         <stop offset="0.47" stop-color="#fee6ce" />
         <stop offset="0.93" stop-color="#845121" />
         <stop offset="1" stop-color="#784210" />
@@ -43,7 +43,7 @@ text { font-size: 12px; }
 rect { stroke-width: 0.2; }
 
 g {
-    .country > rect { fill: rgb(0, 111, 139); stroke: black }
+    .country > rect { fill: #8db3d8; stroke: black }
     .no-data > rect { fill: white; stroke: black }
 }
 </style>

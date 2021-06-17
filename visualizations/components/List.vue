@@ -1,10 +1,13 @@
 <template>
-  <div class="list-container" :class="[{'notHorizontal': scrollyTelling === false}, {'mobile-view': isMobile }]">
+  <div class="list-container" :class="[{'mobile-view': isMobile }]">
     <div class="first-row single-list" :class="{'mobile-view': isMobile }">
       <div class="inner-list">
-        <div v-for="(region, r) in MostAffectedRegions" :key="r" class="region-container">
-          <div v-for="(country, c) in countriesOrderedByImpact[region.d]" :key="c" class="single-country">
-            <img :src="country.path"/>
+        <div v-for="(region, r) in MostAffectedRegions" :key="r" class="outer-container">
+          <p>{{ region.d }}</p>
+          <div class="region-container">
+            <div v-for="(country, c) in countriesOrderedByImpact[region.d]" :key="c" class="single-country">
+              <img :src="country.path" class="country-glyph">
+            </div>
           </div>
         </div>
       </div>
@@ -15,7 +18,6 @@
 import { mapState } from 'vuex'
 import { uniq, groupBy } from 'lodash'
 import { mean } from 'd3-array'
-// import { scaleLinear } from 'd3-scale'
 
 export default {
   name: 'List',
@@ -76,11 +78,12 @@ export default {
   methods: {
     filterData (data) {
       return data.map((d, i) => {
-        // console.log('../assets/img/' + Math.ceil(d.score) + '.png')
         return {
           name: d.name,
           score: d.score,
-          path: d.score !== -9999 || d.score !== null ? require('../assets/img/' + Math.ceil(d.score) + '.png') : ''
+          path: d.score !== null
+            ? require('../assets/img/' + Math.floor(d.score) + '.png')
+            : require('../assets/img/-9999.png')
         }
       })
     }
@@ -88,32 +91,34 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  // background-color: paleturquoise;
   .list-container {
-    &.notHorizontal {
-      padding-top: 17.5%;
-
-    }
-
     &.mobile-view {
-      padding-top: 27.5%;
+      padding-top: 22.5%;
     }
 
     .single-list {
-      background-color: aquamarine;
 
       .inner-list {
-        .region-container {
-          margin-top: 10%;
-          background-color: burlywood;
-          display: inline-flex;
+        .outer-container {
+          margin: 0 auto;
+          p {
+            margin: 2px 0px 0px 5px;
+            font-size: 12px;
+          }
+          .region-container {
+            margin-left: 5px;
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: left;
 
-          .single-country {
-            width: 50px;
+            .single-country {
+              margin: 2px 2px 0px 2px;
+              width: 15px;
 
-            img {
-              width: 100%;
-              height: auto;
+              img {
+                width: 100%;
+                height: auto;
+              }
             }
           }
         }

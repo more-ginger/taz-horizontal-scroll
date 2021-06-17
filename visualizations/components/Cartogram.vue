@@ -91,7 +91,7 @@ export default {
     colorScale () {
       return scaleDiverging().domain([5, 2.5, 1])
         .interpolator(interpolateRgb)
-        .range([rgb('#784210'), rgb('#ffe7cf'), rgb('#41929f')])
+        .range([rgb('#784210'), rgb('#ffe7cf'), rgb('#8db3d8')])
     }
   },
   mounted () {

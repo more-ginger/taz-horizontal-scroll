@@ -1,7 +1,7 @@
 <template>
   <div class="scroll-content">
     <div class="inner">
-      <div v-if="scrollyTelling" class="scroll-inner-container">
+      <div class="scroll-inner-container">
         <article ref="scrolling" class="scrollable-div">
           <Step :step="0">
             Everything is visible
@@ -23,15 +23,12 @@
           </Step>
         </article>
       </div>
-      <div
-        class="visualization-container"
-        :class="[
-          {'notHorizontal': scrollyTelling === false}
-        ]"
-      >
-        <div class="title-container">
+      <div class="visualization-container">
+        <div class="title-container" :class="{'mobile-view': isMobile }">
           <h3>Countries’ basic stress level score</h3>
-          <p>Click or scroll right and left to read ({{ step }})</p>
+          <p v-if="isMobile === false">
+            Click or scroll right and left to read ({{ step }})
+          </p>
         </div>
         <slot>
           <div>
@@ -50,14 +47,8 @@ export default {
   components: {
     Step
   },
-  props: {
-    isMobile: {
-      type: Boolean,
-      default: false
-    }
-  },
   computed: {
-    ...mapState({ step: 'globalStep', scrollyTelling: 'scrollyTellingStatus' })
+    ...mapState({ step: 'globalStep', scrollyTelling: 'scrollyTellingStatus', isMobile: 'isMobile' })
   }
 }
 
@@ -109,6 +100,13 @@ export default {
       .title-container {
         position: absolute;
         margin: 2.5%;
+
+        &.mobile-view {
+          h3 {
+          text-align: center;
+          font-size: 1rem;
+          }
+        }
       }
     }
 

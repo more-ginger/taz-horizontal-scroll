@@ -1,7 +1,8 @@
 export const state = () => ({
   globalScroll: 0,
   globalStep: 0,
-  scrollyTellingStatus: true
+  scrollyTellingStatus: true,
+  isMobile: false
 })
 
 export const mutations = {
@@ -15,5 +16,8 @@ export const mutations = {
   },
   UpdatescrollyTellingStatus (state, scrollyStatus) {
     state.scrollyTellingStatus = scrollyStatus
+  },
+  updateViewportStatus (state, mobile) {
+    state.isMobile = mobile
   }
 }

@@ -38,9 +38,10 @@ export default {
       if (iFrameWidth <= 300) {
         this.isMobile = true
         this.$store.commit('UpdatescrollyTellingStatus', false)
+        this.$store.commit('updateViewportStatus', true)
       }
     },
-    ...mapMutations(['UpdatescrollyTellingStatus'])
+    ...mapMutations(['UpdatescrollyTellingStatus', 'updateViewportStatus'])
   }
 }
 </script>
