@@ -2,7 +2,13 @@ export const state = () => ({
   globalScroll: 0,
   globalStep: 0,
   scrollyTellingStatus: true,
-  isMobile: false
+  isMobile: false,
+  activeSubRegions: [
+    ['Western Asia'], // 1
+    ['Middle Africa'], // 2
+    ['Eastern Africa', 'Egypt', 'Sudan'], // 3
+    ['Bolivia', 'Colombia'] // 4
+  ]
 })
 
 export const mutations = {

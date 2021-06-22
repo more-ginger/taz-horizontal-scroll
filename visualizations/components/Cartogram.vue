@@ -52,18 +52,11 @@ export default {
       transformTop: 0,
       transformLegend: null,
       activeCountry: {},
-      isEmpty: true,
-      // Change names to change what is highlighted in steps
-      activeSubRegions: [
-        ['Western Asia'], // 1
-        ['Middle Africa'], // 2
-        ['Eastern Africa', 'Egypt', 'Sudan'], // 3
-        ['Bolivia', 'Colombia'] // 4
-      ]
+      isEmpty: true
     }
   },
   computed: {
-    ...mapState({ step: 'globalStep' }),
+    ...mapState({ step: 'globalStep', activeSubRegions: 'activeSubRegions' }),
     ParsedData () {
       return this.waterStress.map((d) => {
         return {

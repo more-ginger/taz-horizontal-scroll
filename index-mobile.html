@@ -8,20 +8,22 @@
   <meta name="description" content="iFrame testing">
   <meta name="author" content="more-ginger">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-  <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
   <style>
       body {
           max-width: 1280px;
           margin: 0 auto;
       }
       .general-container {
-          max-width: 624px;
-          height: 624px;
-          margin: 5% auto;
-          padding: 10%;
+          /* width: 624px; */
+          /* height: 624px; */
+          margin: 0 auto;
+          width: 80%;
       }
-      /* .iframe-mobile {
-          width: 300px;
+      .iframe-mobile {
+          margin: 0 auto;
+          width: 0px;
+          min-width: 100% !important;
+          height: 700px !important;
       }
 
       .iframe-desktop {
@@ -31,7 +33,7 @@
 
       .iframe-fullwidth {
           width: 909px;
-      } */
+      }
       iframe {
           background-color: white;
           border: 0.5px dashed #d40c2d;
@@ -43,10 +45,15 @@
   .output {
       background: #eee;
   }
+
+  @media screen and (max-width: 600px) {
+    body {
+        background-color: olive;
+    }
+}
   </style>
 
 </head>
-
   <body>
       <div class="general-container">
           <div class="title"><h1>One title</h1></div>
@@ -63,27 +70,13 @@
                   the rest of the page has loaded.
             </p>
           </div>
-          <div class="title"><h1>624 x 624</h1></div>
-          <div class="iframe-desktop">
-              <iframe id="inlineFrameExample"
-              title="Inline Frame Example"
-              src="http://localhost:3000/micro-article">
-              </iframe>
-          </div>
-        <!-- <div class="title"><h1>300 x 624</h1></div>
+        <div class="title"><h1>300 x 624</h1></div>
           <div class="iframe-mobile">
               <iframe id="inlineFrameExample"
               title="Inline Frame Example"
               src="http://localhost:3000/micro-article">
               </iframe>
           </div>
-          <div class="title"><h1>909 x 624</h1></div>
-          <div class="iframe-fullwidth">
-              <iframe id="inlineFrameExample"
-              title="Inline Frame Example"
-              src="http://localhost:3000/micro-article">
-              </iframe>
-          </div> -->
           <div class="text-paragraph">
               <p>
                   We’ve put the script element at the bottom of our page to conform

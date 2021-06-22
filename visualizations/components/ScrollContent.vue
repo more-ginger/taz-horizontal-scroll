@@ -26,9 +26,17 @@
       <div class="visualization-container">
         <div class="title-container" :class="{'mobile-view': isMobile }">
           <h3>Countries’ basic stress level score</h3>
-          <p v-if="isMobile === false">
-            Click or scroll right and left to read ({{ step }})
-          </p>
+          <div class="details-container">
+            <p>
+              Click / scroll to the side ({{ step }})
+            </p>
+            <div class="arrows-container">
+              <div class="arrows-inner">
+                <img id="left" src="../assets/img/left.png" @click="changeStep('left')">
+                <img id="right" src="../assets/img/right.png" @click="changeStep('right')">
+              </div>
+            </div>
+          </div>
         </div>
         <slot>
           <div>
@@ -40,15 +48,58 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import Step from './Step.vue'
 export default {
   name: 'ScrollContent',
   components: {
     Step
   },
+  data () {
+    return {
+      stepsList: []
+    }
+  },
   computed: {
     ...mapState({ step: 'globalStep', scrollyTelling: 'scrollyTellingStatus', isMobile: 'isMobile' })
+  },
+  mounted () {
+    this.getStepsPosition()
+  },
+  methods: {
+    getStepsPosition () {
+      const { scrolling } = this.$refs
+      const stepsList = []
+      let scrollDifference = 0
+
+      scrolling.children.forEach((step, s) => {
+        if (s !== 0) {
+          scrollDifference = scrollDifference + step.offsetLeft - scrolling.children[s - 1].offsetLeft
+        } else {
+          scrollDifference = 0
+        }
+        stepsList.push({ number: s, offset: scrollDifference })
+      })
+      this.stepsList = stepsList
+    },
+    changeStep (direction) {
+      const { stepsList } = this
+      let globalStep = this.step
+      const withinMaxLength = globalStep <= stepsList.length - 2
+      const withinMinLength = globalStep > 0
+
+      if (direction === 'right' && withinMaxLength) {
+        globalStep = globalStep + 1
+        window.scrollTo(stepsList[globalStep].offset, 0)
+      } else if (direction === 'left' && withinMinLength) {
+        globalStep = globalStep - 1
+        console.log(globalStep)
+        window.scrollTo(stepsList[globalStep].offset + 40, 0)
+      }
+
+      this.$store.commit('updateGlobalStep', globalStep)
+    },
+    ...mapMutations(['updateGlobalStep'])
   }
 }
 
@@ -102,9 +153,52 @@ export default {
         margin: 2.5%;
 
         &.mobile-view {
+          width: 100%;
+          margin: 0 auto;
+          margin-top: 15px;
           h3 {
           text-align: center;
           font-size: 1rem;
+          }
+          p {
+            font-size: 0.80rem;
+            text-align: center;
+          }
+
+          .arrows-container {
+            .arrows-inner {
+              margin: 0 auto;
+              width: 80%;
+              padding-left: 10%;
+
+              img {
+                width: 40%;
+                position: relative;
+
+                &.right {
+                  margin: 0;
+                }
+              }
+            }
+          }
+        }
+
+        .details-container {
+          width: 100%;
+          // display: inline-flex;
+
+          p {
+            font-size: 12px;
+            margin-bottom: 0;
+          }
+
+          .arrows-container {
+            // pointer-events: none;
+            img {
+              width: 20%;
+              margin-right: 10px;
+              cursor: pointer;
+            }
           }
         }
       }

@@ -31,14 +31,8 @@ export default {
       default: false
     }
   },
-  data () {
-    return {
-      sort: 'rank',
-      detail: false
-    }
-  },
   computed: {
-    ...mapState({ step: 'globalStep', scrollyTelling: 'scrollyTellingStatus' }),
+    ...mapState({ step: 'globalStep', scrollyTelling: 'scrollyTellingStatus', activeSubRegions: 'activeSubRegions' }),
     regionsList () {
       return uniq(this.waterStress.map((d) => {
         return d.region
@@ -81,11 +75,30 @@ export default {
         return {
           name: d.name,
           score: d.score,
-          path: d.score !== null
-            ? require('../assets/img/' + Math.floor(d.score) + '.png')
-            : require('../assets/img/-9999.png')
+          path: this.changeImgSrc(this.step, d)
         }
       })
+    },
+    changeImgSrc (step, d) {
+      const { activeSubRegions } = this
+
+      const invalid = d.score === -9999 || d.score === null
+      const statusArrayLength = activeSubRegions.length
+      const currentArrayInMatrix = activeSubRegions[step - 1]
+
+      if (step === 0 && !invalid) {
+        return require('../assets/img/' + Math.floor(d.score) + '.svg')
+      } else if (step > 0 && step <= statusArrayLength) {
+        const isSubRegion = currentArrayInMatrix.includes(d.subRegion)
+        const isCountry = currentArrayInMatrix.includes(d.name)
+        return (isSubRegion || isCountry) && !invalid
+          ? require('../assets/img/' + Math.floor(d.score) + '.svg')
+          : require('../assets/img/-9999.svg')
+      } else if (step > statusArrayLength && !invalid) {
+        return require('../assets/img/' + Math.floor(d.score) + '.svg')
+      } else {
+        return require('../assets/img/-9999.svg')
+      }
     }
   }
 }
