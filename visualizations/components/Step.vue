@@ -39,13 +39,15 @@ export default {
 .step {
   // border-right: 1px dashed black;
   width: 100vw;
+  height: 100%;
   display: inline-table;
   flex-direction: row;
-  padding: 0 25vw 0 5vw;
+  padding: 0 25vw 0 0;
+  position: relative;
 
   .inner-step {
 
-    width: 50%;
+    width: 60%;
     background: rgba(255, 255, 255, 0.6);
     border: 1px solid black;
     padding: 10px;
@@ -56,6 +58,18 @@ export default {
     }
     p {
       font-size: 16px;
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .step {
+    // align-items: baseline;
+    .inner-step {
+      position: absolute;
+      bottom: 0;
+      width: 70%;
+      margin-top: 90%;
     }
   }
 }

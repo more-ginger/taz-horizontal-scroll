@@ -5,7 +5,12 @@
         <div v-for="(region, r) in MostAffectedRegions" :key="r" class="outer-container">
           <p>{{ region.d }}</p>
           <div class="region-container">
-            <div v-for="(country, c) in countriesOrderedByImpact[region.d]" :key="c" class="single-country">
+            <div
+              v-for="(country, c) in countriesOrderedByImpact[region.d]"
+              :key="c"
+              class="single-country"
+              :data-tooltip="`${country.name} / ${country.score}`"
+            >
               <img :src="country.path" class="country-glyph">
             </div>
           </div>
@@ -32,7 +37,12 @@ export default {
     }
   },
   computed: {
-    ...mapState({ step: 'globalStep', scrollyTelling: 'scrollyTellingStatus', activeSubRegions: 'activeSubRegions' }),
+    ...mapState(
+      {
+        step: 'globalStep',
+        scrollyTelling: 'scrollyTellingStatus',
+        activeSubRegions: 'activeSubRegions'
+      }),
     regionsList () {
       return uniq(this.waterStress.map((d) => {
         return d.region
@@ -104,16 +114,34 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  [data-tooltip]:before {
+    position: absolute;
+    content: attr(data-tooltip);
+    opacity: 0;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1% 2.5%;
+    border-radius: 5px;
+    pointer-events: none;
+
+    font-size: 12px;
+  }
+  [data-tooltip]:hover:before {
+    opacity: 1;
+    margin-top: -32px;
+    transform: translateX(-25%);
+  }
+
   .list-container {
     &.mobile-view {
-      padding-top: 22.5%;
+      padding-top: 26%;
     }
 
     .single-list {
 
       .inner-list {
         .outer-container {
-          margin: 0 auto;
+          margin: 0 2%;
           p {
             margin: 2px 0px 0px 5px;
             font-size: 12px;
@@ -139,4 +167,11 @@ export default {
     }
   }
 
+@media(hover: none) and (pointer: coarse) {
+  [data-tooltip]:hover:before {
+    opacity: 1;
+    margin-top: -32px;
+    transform: translateX(-25%);
+  }
+}
 </style>

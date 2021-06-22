@@ -4,7 +4,10 @@
       <div class="scroll-inner-container">
         <article ref="scrolling" class="scrollable-div">
           <Step :step="0">
-            Everything is visible
+            Everything is visible. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
           </Step>
           <Step :step="1">
             Focus on Middle East and North Africa
@@ -93,7 +96,6 @@ export default {
         window.scrollTo(stepsList[globalStep].offset, 0)
       } else if (direction === 'left' && withinMinLength) {
         globalStep = globalStep - 1
-        console.log(globalStep)
         window.scrollTo(stepsList[globalStep].offset + 40, 0)
       }
 
@@ -106,14 +108,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .scroll-content {
-  .debug {
-    position: absolute;
-    z-index: 3;
-    bottom: 0;
-    margin: 10px;
-    cursor: pointer;
-  }
-
   position: absolute;
   top: 0;
   width: 100%; height: 100%;
@@ -121,7 +115,7 @@ export default {
   .inner {
     position: sticky;
     top: 0px;
-    // height: 100vh;
+    height: 100vh;
 
     .visualization-container {
 
@@ -214,7 +208,7 @@ export default {
       padding: 1.5rem 1rem 1.5rem 1rem;
 
       .scrollable-div {
-        height: 50%;
+        height: 100%;
         display: inline-flex;
         padding: 0 40% 0 5%;
 
@@ -222,6 +216,18 @@ export default {
           margin-right: 100vw;
         }
        }
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .scroll-content {
+    .inner {
+      .scroll-inner-container {
+          article {
+            padding: 40% 0 5%;
+          }
+      }
     }
   }
 }
