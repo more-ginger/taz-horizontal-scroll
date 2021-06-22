@@ -63,12 +63,13 @@
   "rank": 76,
   "label": "Low - Medium (10-20%)"
 }, {
+  "name": "Antartica",
   "iso_a3": "ATA",
   "region": "Antarctica",
   "x": 15,
   "y": 23,
   "subRegion": "NA",
-  "score": null,
+  "score": -9999,
   "DGWscore": null,
   "IRRGWscore": null,
   "INDGWscore": null,

@@ -31,12 +31,12 @@
           <h3>Countries’ basic stress level score</h3>
           <div class="details-container">
             <p>
-              Click / scroll to the side ({{ step }})
+              Click / scroll to the side ({{ step }} / {{ stepsList.length - 1 }})
             </p>
             <div class="arrows-container">
               <div class="arrows-inner">
-                <img id="left" src="../assets/img/left.png" @click="changeStep('left')">
-                <img id="right" src="../assets/img/right.png" @click="changeStep('right')">
+                <img id="left" :class="{'active-arrow': step !== 0}" src="../assets/img/left.png" @click="changeStep('left')">
+                <img id="right" :class="{'active-arrow': step !== 5}" src="../assets/img/right.png" @click="changeStep('right')">
               </div>
             </div>
           </div>
@@ -162,14 +162,14 @@ export default {
           .arrows-container {
             .arrows-inner {
               margin: 0 auto;
-              width: 80%;
-              padding-left: 10%;
+              width: 90%;
+              padding-left: 5%;
 
               img {
                 width: 40%;
                 position: relative;
 
-                &.right {
+                &#right {
                   margin: 0;
                 }
               }
@@ -189,9 +189,14 @@ export default {
           .arrows-container {
             // pointer-events: none;
             img {
-              width: 20%;
+              width: 30%;
               margin-right: 10px;
               cursor: pointer;
+               opacity: 0.2;
+
+                &.active-arrow {
+                  opacity: 1;
+                }
             }
           }
         }

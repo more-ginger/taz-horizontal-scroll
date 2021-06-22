@@ -44,6 +44,6 @@ rect { stroke-width: 0.2; }
 
 g {
     .country > rect { fill: #8db3d8; stroke: black }
-    .no-data > rect { fill: white; stroke: black }
+    .no-data > rect { fill: #eee; stroke: black }
 }
 </style>

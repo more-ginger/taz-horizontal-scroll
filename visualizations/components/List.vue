@@ -84,7 +84,7 @@ export default {
       return data.map((d, i) => {
         return {
           name: d.name,
-          score: d.score,
+          score: d.score !== -9999 ? d.score : 'No data',
           path: this.changeImgSrc(this.step, d)
         }
       })
