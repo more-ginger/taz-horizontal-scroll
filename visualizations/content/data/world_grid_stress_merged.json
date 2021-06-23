@@ -654,7 +654,7 @@
   "rank": 107,
   "label": "Low (<10%)"
 }, {
-  "name": "C�te d'Ivoire",
+  "name": "C&#244;te d'Ivoire",
   "iso_a3": "CIV",
   "region": "Africa",
   "x": 12,
@@ -1069,12 +1069,13 @@
   "rank": 26,
   "label": "High (40-80%)"
 }, {
+  "name": "Greenland",
   "iso_a3": "GRL",
   "region": "Americas",
   "x": 8,
   "y": 1,
   "subRegion": "Northern America",
-  "score": null,
+  "score": -9999,
   "DGWscore": null,
   "IRRGWscore": null,
   "INDGWscore": null,
@@ -1419,6 +1420,7 @@
   "rank": 106,
   "label": "Low (<10%)"
 }, {
+  "name": "Kiribati",
   "iso_a3": "KIR",
   "region": "Oceania",
   "x": 27,
@@ -1465,12 +1467,13 @@
   "rank": 53,
   "label": "Medium - High (20-40%)"
 }, {
+  "name": "Kosovo",
   "iso_a3": "XKX",
   "region": "Europe",
   "x": 16,
   "y": 8,
   "subRegion": "Southern Europe",
-  "score": null,
+  "score": -9999,
   "DGWscore": null,
   "IRRGWscore": null,
   "INDGWscore": null,
@@ -1703,12 +1706,13 @@
   "rank": 132,
   "label": "Low (<10%)"
 }, {
+  "name": "Maldives",
   "iso_a3": "MDV",
   "region": "Asia",
   "x": 21,
   "y": 12,
   "subRegion": "Southern Asia",
-  "score": null,
+  "score": -9999,
   "DGWscore": null,
   "IRRGWscore": null,
   "INDGWscore": null,
@@ -1749,12 +1753,13 @@
   "rank": 165,
   "label": "NoData"
 }, {
+  "name": "Marshall Islands",
   "iso_a3": "MHL",
   "region": "Oceania",
   "x": 26,
   "y": 15,
   "subRegion": "Micronesia",
-  "score": null,
+  "score": -9999,
   "DGWscore": null,
   "IRRGWscore": null,
   "INDGWscore": null,
@@ -2355,7 +2360,7 @@
   "rank": 165,
   "label": "NoData"
 }, {
-  "name": "S�o Tom� and Pr�ncipe",
+  "name": "S&#227;o Tom&#233; and Pr&#237;ncipe",
   "iso_a3": "STP",
   "region": "Africa",
   "x": 11,

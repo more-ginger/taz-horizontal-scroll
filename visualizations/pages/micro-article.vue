@@ -24,6 +24,16 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+html {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }
+}
 .visualization-outer { max-width: 1240px; width: 100%; }
+a { color: rgba(201,6,43,1); text-decoration: underline; }
 </style>

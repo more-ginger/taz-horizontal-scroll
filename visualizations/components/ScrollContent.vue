@@ -10,7 +10,10 @@
             aliquip ex ea commodo consequat.
           </Step>
           <Step :step="1">
-            Focus on Middle East and North Africa
+            Focus on Middle East and North Africa and
+            <a href="https://taz.de/Wassermangel-in-Suedindien/!5337607/">
+              this is a link
+            </a>
           </Step>
           <Step :step="2">
             Focus on Central Africa
@@ -30,12 +33,12 @@
         <div class="title-container" :class="{'mobile-view': isMobile }">
           <h3>Countries’ basic stress level score</h3>
           <div class="details-container">
-            <p>
-              Click / scroll to the side ({{ step }} / {{ stepsList.length - 1 }})
-            </p>
             <div class="arrows-container">
               <div class="arrows-inner">
                 <img id="left" :class="{'active-arrow': step !== 0}" src="../assets/img/left.png" @click="changeStep('left')">
+                <p>
+                  Click / scroll to the side ({{ step }} / {{ stepsList.length - 1 }})
+                </p>
                 <img id="right" :class="{'active-arrow': step !== 5}" src="../assets/img/right.png" @click="changeStep('right')">
               </div>
             </div>
@@ -95,8 +98,9 @@ export default {
         globalStep = globalStep + 1
         window.scrollTo(stepsList[globalStep].offset, 0)
       } else if (direction === 'left' && withinMinLength) {
+        console.log(globalStep, globalStep - 1)
         globalStep = globalStep - 1
-        window.scrollTo(stepsList[globalStep].offset + 40, 0)
+        window.scrollTo(stepsList[globalStep].offset + 50, 0)
       }
 
       this.$store.commit('updateGlobalStep', globalStep)
@@ -146,7 +150,36 @@ export default {
         position: absolute;
         margin: 2.5%;
 
-        &.mobile-view {
+        .details-container {
+          width: 100%;
+
+          p {
+            font-size: 12px;
+            margin-bottom: 0;
+          }
+
+          .arrows-container {
+
+            .arrows-inner {
+              display: inline-flex;
+             img {
+                width: 4%;
+                height: auto;
+                margin: 10px;
+                cursor: pointer;
+                opacity: 0.2;
+                margin-top: 3px;
+
+                &.active-arrow {
+                  opacity: 1;
+                }
+            }
+
+            }
+          }
+        }
+
+         &.mobile-view {
           width: 100%;
           margin: 0 auto;
           margin-top: 15px;
@@ -158,44 +191,18 @@ export default {
             font-size: 0.80rem;
             text-align: center;
           }
+          .details-container {
+              .arrows-container {
+                .arrows-inner {
+                  margin: 0 auto;
+                  width: 90%;
+                  padding-left: 5%;
 
-          .arrows-container {
-            .arrows-inner {
-              margin: 0 auto;
-              width: 90%;
-              padding-left: 5%;
-
-              img {
-                width: 40%;
-                position: relative;
-
-                &#right {
-                  margin: 0;
-                }
-              }
-            }
-          }
-        }
-
-        .details-container {
-          width: 100%;
-          // display: inline-flex;
-
-          p {
-            font-size: 12px;
-            margin-bottom: 0;
-          }
-
-          .arrows-container {
-            // pointer-events: none;
-            img {
-              width: 30%;
-              margin-right: 10px;
-              cursor: pointer;
-               opacity: 0.2;
-
-                &.active-arrow {
-                  opacity: 1;
+                  img {
+                    width: 5% !important;
+                    height: auto;
+                    position: relative;
+                  }
                 }
             }
           }
@@ -207,18 +214,29 @@ export default {
       z-index: 1;
       position: sticky;
       width: 100%; height: 100%;
-
       pointer-events: none;
-
       padding: 1.5rem 1rem 1.5rem 1rem;
 
       .scrollable-div {
-        height: 100%;
+        height: 99%;
         display: inline-flex;
         padding: 0 40% 0 5%;
+        box-sizing: content-box;
+        overflow-y: hidden;
 
         .last {
           margin-right: 100vw;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .scrollbar-hidden::-webkit-scrollbar {
+          display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge add Firefox */
+        .scrollbar-hidden {
+          -ms-overflow-style: none;
+          scrollbar-width: none; /* Firefox */
         }
        }
     }

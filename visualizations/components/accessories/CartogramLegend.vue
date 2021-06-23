@@ -8,29 +8,29 @@
         <stop offset="1" stop-color="#784210" />
       </linearGradient>
     </defs>
-    <g class="gradient-bar">
-      <text x="0px" y="0px">
+    <g class="gradient-bar" transform="translate(0, -50)">
+      <text x="0px" y="10px">
         Water stress score
       </text>
-      <rect width="230px" height="19px" y="5px" fill="url(#linear-gradient)" rx="10"/>
+      <rect width="190px" height="9px" y="15px" fill="url(#linear-gradient)" rx="0" />
       <text x="0" y="40px">
         Very low (0)
       </text>
-      <text x="230px" y="40px" text-anchor="end">
+      <text x="190px" y="40px" text-anchor="end">
         Very high (5)
       </text>
     </g>
-    <g class="no-data" transform="translate(250, 5)">
-      <text x="25px" y="14.5px">
+    <g class="no-data" transform="translate(0, 5)">
+      <text x="25px" y="11px">
         No data
       </text>
-      <rect width="19px" height="19px" x="0" y="0" rx="10"/>
+      <rect width="14px" height="14px" x="0" y="0" />
     </g>
-    <g class="country" transform="translate(380, 5)">
-      <text x="25px" y="14.5px">
+    <g class="country" transform="translate(100, 5)">
+      <text x="25px" y="11px">
         = 1 country
       </text>
-      <rect width="19px" height="19px" x="0" y="0" />
+      <rect width="14px" height="14px" x="0" y="0" />
     </g>
   </g>
 </template>
@@ -43,7 +43,7 @@ text { font-size: 12px; }
 rect { stroke-width: 0.2; }
 
 g {
-    .country > rect { fill: #8db3d8; stroke: black }
+    .country > rect { fill: white; stroke: black }
     .no-data > rect { fill: #eee; stroke: black }
 }
 </style>

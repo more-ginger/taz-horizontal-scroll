@@ -6,8 +6,8 @@
           <rect
             :x="element.x"
             :y="element.y"
-            width="19"
-            height="19"
+            :width="cube"
+            :height="cube"
             :fill="element.fill"
             @mouseenter="toggleCountryLabel(element)"
           />
@@ -49,6 +49,7 @@ export default {
     return {
       sizes: { width: 0, height: 0 },
       margins: { top: 0, left: 0, right: 0, bottom: 0 },
+      cube: 19,
       transformTop: 0,
       transformLegend: null,
       activeCountry: {},
@@ -92,15 +93,10 @@ export default {
   },
   methods: {
     toggleCountryLabel (country) {
-      const { activeSubRegions, step } = this
-      const statusArrayLength = activeSubRegions.length
-      if (step > statusArrayLength) {
-        this.activeCountry = country
-        this.isEmpty = false
-      } else {
-        this.isEmpty = true
-        this.activeCountry = {}
-      }
+      // const { activeSubRegions, step } = this
+      // const statusArrayLength = activeSubRegions.length
+      this.activeCountry = country
+      this.isEmpty = false
     },
     // Step logic for fill color
     changeFillColor (step, d) {
@@ -138,10 +134,12 @@ export default {
       this.margins.left = width > 900 ? width / 5 : width / 12
       this.margins.right = width > 900 ? width / 6 : width / 12
 
-      this.transformTop = width > 900 ? -90 : 60
+      this.cube = width < 624 ? 16 : 19
+
+      this.transformTop = width > 900 ? -90 : 50
       this.transformLegend = width > 900
         ? `translate(30,${sizes.height - margins.bottom})`
-        : `translate(${margins.left},${sizes.height - margins.bottom / 1.5})`
+        : `translate(${margins.left / 2},${sizes.height - margins.bottom / 1.5})`
     }
   }
 }
@@ -154,7 +152,7 @@ export default {
     rect {
       fill: ghostwhite default;
       stroke-width: 0.2;
-      stroke: black;
+      stroke: #eee;
       transition: fill 0.5s;
     }
   }

@@ -30,7 +30,7 @@ export default {
   mounted () {
     const textNode = document.getElementById(this.currentLabel.iso_a3)
     const bb = textNode.getBBox()
-    this.backgroundWidth = bb.width + 2
+    this.backgroundWidth = bb.width + 5
   }
 }
 </script>
