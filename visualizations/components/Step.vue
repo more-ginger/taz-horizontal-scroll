@@ -64,7 +64,6 @@ export default {
 
 @media only screen and (max-width: 375px) {
   .step {
-    // align-items: baseline;
     .inner-step {
       position: absolute;
       bottom: 0;

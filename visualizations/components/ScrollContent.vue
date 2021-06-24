@@ -37,9 +37,15 @@
               <div class="arrows-inner">
                 <img id="left" :class="{'active-arrow': step !== 0}" src="../assets/img/left.png" @click="changeStep('left')">
                 <p>
-                  Click / scroll to the side ({{ step }} / {{ stepsList.length - 1 }})
+                  Click / scroll to the side
+                  ({{ step }} / {{ stepsList.length - 1 }})
                 </p>
                 <img id="right" :class="{'active-arrow': step !== 5}" src="../assets/img/right.png" @click="changeStep('right')">
+                <div class="source-container">
+                  <p>
+                    [<a href="https://www.wri.org/data/water-stress-country">data source</a>]
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -67,7 +73,11 @@ export default {
     }
   },
   computed: {
-    ...mapState({ step: 'globalStep', scrollyTelling: 'scrollyTellingStatus', isMobile: 'isMobile' })
+    ...mapState({
+      step: 'globalStep',
+      scrollyTelling: 'scrollyTellingStatus',
+      isMobile: 'isMobile'
+    })
   },
   mounted () {
     this.getStepsPosition()
@@ -88,6 +98,7 @@ export default {
       })
       this.stepsList = stepsList
     },
+    // Control step through arrows instead of scroll
     changeStep (direction) {
       const { stepsList } = this
       let globalStep = this.step
@@ -98,8 +109,8 @@ export default {
         globalStep = globalStep + 1
         window.scrollTo(stepsList[globalStep].offset, 0)
       } else if (direction === 'left' && withinMinLength) {
-        console.log(globalStep, globalStep - 1)
         globalStep = globalStep - 1
+        // Harcode additional offset to avoid steps glitching back and forth
         window.scrollTo(stepsList[globalStep].offset + 50, 0)
       }
 
@@ -179,6 +190,11 @@ export default {
           }
         }
 
+        .source-container {
+          position: absolute;
+          right: 0;
+        }
+
          &.mobile-view {
           width: 100%;
           margin: 0 auto;
@@ -222,6 +238,7 @@ export default {
         display: inline-flex;
         padding: 0 40% 0 5%;
         box-sizing: content-box;
+        /* Prevent vertical scroll if container is too tall*/
         overflow-y: hidden;
 
         .last {
