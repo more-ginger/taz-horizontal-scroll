@@ -4,48 +4,74 @@
       <div class="scroll-inner-container">
         <article ref="scrolling" class="scrollable-div">
           <Step :step="0">
-            Everything is visible. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            Luise I would suggest having a short introduction here to explain readers what they are looking at.
+            I think it could be helpful for them. If you want I can provide a short text in english.
           </Step>
-          <Step :step="1">
-            Focus on Middle East and North Africa and
-            <a href="https://taz.de/Wassermangel-in-Suedindien/!5337607/">
-              this is a link
+          <Step :step="1" :optional-class="'bottom larger'">
+            Der <span style="background-color: rgb(179, 139, 100);">Nahe Osten</span> und
+            <span style="background-color: rgb(196, 158, 123);">Nordafrika</span> ist die wasserärmste Region der Welt –
+            und ein weltweiter Brennpunkt für nicht-nachhaltigen Wasserverbrauch. Die Länder erproben neue Technologien,
+            um mit dem Mangel umzugehen.
+            <a target="_blank" rel="noopener noreferrer" href="https://taz.de/Abwasser-in-Jordanien/!5760381/">
+              Abwasser in Jordanien
             </a>
           </Step>
-          <Step :step="2">
-            Focus on Central Africa
+          <Step :step="2" :optional-class="'bottom larger'">
+            600 Millionen der 1,38-Milliarden-Einwohner*innen in <span style="background-color: rgb(168, 124, 83);">Indien</span>
+            leiden bereits unter akuter Wasserknappheit. In trockenen Gegenden zapfen Landwirt*innen das Grundwasser
+            zur Bewässerung an. Gewässer sind oft stark verschmutzt, wie etwa der Fluss Ganges.
+            <a target="_blank" rel="noopener noreferrer" href="https://taz.de/Wasserschutz-in-Indien/!5761850/">
+              Wasserschutz in Indien
+            </a>
           </Step>
-          <Step :step="3">
-            Focus on Nile area
+          <Step :step="3" :optional-class="'top larger'">
+            Wem gehört das Wasser? In der <span style="background-color: rgb(179, 196, 213);">Nil-Region</span>
+            entflammen Konflikte darüber, welcher Staat das Recht hat,
+            den Fluss für seine Zwecke zu nutzen und damit anderen womöglich das Wasser abzugraben.
+            <a href="https://taz.de/Konflikt-um-Staudamm-in-Uganda/!5747732/">
+              Konflikt um Staudamm in Uganda
+            </a> /
+            <a target="_blank" rel="noopener noreferrer" href="https://taz.de/Blauer-Nil-in-Sudan/!5762230/">
+              Blauer Nil in Sudan
+            </a>
           </Step>
-          <Step :step="4">
-            Focus on Bolivia and Colombia
+          <Step :step="4" :optional-class="'bottom larger'">
+            <span style="background-color: rgb(114, 167, 218);">Kolumbien</span>
+            und <span style="background-color: rgb(152, 184, 215);">Bolivien</span>
+            haben vergleichweise wenig Wasserstress – die Situation ist dort
+            besser als zum Beispiel in Deutschland. Doch Schutzgebiete fallen Landraub zum Opfer,
+            Gewässer drohen zu verschmutzen – und Naturschützer*innen leben gefährlich.
+            <a target="_blank" rel="noopener noreferrer" href="https://taz.de/Zerstoerte-Schutzgebiete-in-Kolumbien/!5723085/">
+              Zerstörte Schutzgebiete in Kolumbien
+            </a>
           </Step>
           <Step :step="5" class="last">
-            Everything is visible (again)
+            <!-- Everything is visible (again) -->
           </Step>
         </article>
       </div>
       <div class="visualization-container">
         <div class="title-container" :class="{'mobile-view': isMobile }">
-          <h3>Countries’ basic stress level score</h3>
+          <h4>Überblick den Wasserstress in den Ländern</h4>
           <div class="details-container">
             <div class="arrows-container">
               <div class="arrows-inner">
-                <img id="left" :class="{'active-arrow': step !== 0}" src="../assets/img/left.png" @click="changeStep('left')">
+                <img
+                  id="left"
+                  :class="{'active-arrow': step !== 0}"
+                  src="../assets/img/left.png"
+                  @click="changeStep('left')"
+                >
                 <p>
-                  Click / scroll to the side
+                  Klicken / blättern Sie zur Seite
                   ({{ step }} / {{ stepsList.length - 1 }})
                 </p>
-                <img id="right" :class="{'active-arrow': step !== 5}" src="../assets/img/right.png" @click="changeStep('right')">
-                <div class="source-container">
-                  <p>
-                    [<a href="https://www.wri.org/data/water-stress-country">data source</a>]
-                  </p>
-                </div>
+                <img
+                  id="right"
+                  :class="{'active-arrow': step !== 5}"
+                  src="../assets/img/right.png"
+                  @click="changeStep('right')"
+                >
               </div>
             </div>
           </div>
@@ -55,6 +81,15 @@
             <h1>{{ step }}</h1>
           </div>
         </slot>
+        <div class="source-container">
+          <p>
+            [<a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.wri.org/data/water-stress-country"
+            >data source</a>]
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -136,7 +171,7 @@ export default {
 
       &.mobile-view {
         .title-container {
-            h3 { font-size: 20px; }
+            h4 { font-size: 1rem; }
             h5 { font-size: 12px; }
           }
         }
@@ -190,21 +225,16 @@ export default {
           }
         }
 
-        .source-container {
-          position: absolute;
-          right: 0;
-        }
-
          &.mobile-view {
           width: 100%;
           margin: 0 auto;
           margin-top: 15px;
-          h3 {
+          h4 {
           text-align: center;
-          font-size: 1rem;
+          font-size: 0.9rem;
           }
           p {
-            font-size: 0.80rem;
+            font-size: 0.6rem;
             text-align: center;
           }
           .details-container {
@@ -213,6 +243,7 @@ export default {
                   margin: 0 auto;
                   width: 90%;
                   padding-left: 5%;
+                  font-size: 10px;
 
                   img {
                     width: 5% !important;
@@ -223,6 +254,12 @@ export default {
             }
           }
         }
+      }
+      .source-container {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        font-size: 12px;
       }
     }
 
@@ -243,6 +280,7 @@ export default {
 
         .last {
           margin-right: 100vw;
+          opacity: 0;
         }
 
         /* Hide scrollbar for Chrome, Safari and Opera */

@@ -4,9 +4,21 @@ export const state = () => ({
   scrollyTellingStatus: true,
   isMobile: false,
   activeSubRegions: [
-    ['Western Asia'], // 1
-    ['Middle Africa'], // 2
-    ['Eastern Africa', 'Egypt', 'Sudan'], // 3
+    ['Western Asia', 'Northern Africa'], // 1
+    ['India'], // 2
+    [
+      'Tanzania',
+      'Uganda',
+      'Rwanda',
+      'Burundi',
+      'Democratic Republic of the Congo',
+      'Kenya',
+      'Ethiopia',
+      'Eritrea',
+      'Sudan',
+      'South Sudan',
+      'Egypt'
+    ], // 3
     ['Bolivia', 'Colombia'] // 4
   ]
 })

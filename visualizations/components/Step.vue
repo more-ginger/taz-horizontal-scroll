@@ -1,6 +1,6 @@
 <template>
   <div ref="intersect" class="step intersection-observer">
-    <div class="inner-step">
+    <div class="inner-step" :class="optionalClass">
       <slot />
     </div>
   </div>
@@ -9,6 +9,10 @@
 export default {
   name: 'Step',
   props: {
+    optionalClass: {
+      type: String,
+      default: ''
+    },
     step: {
       type: Number,
       default: 0
@@ -53,11 +57,28 @@ export default {
     margin-top: 50%;
     margin-left: 40px;
 
+    &.larger {
+      max-width: 90%;
+    }
+
+    &.bottom {
+      margin-top: 60%;
+    }
+
+    &.top {
+      margin-top: 15%;
+    }
+
     &.center {
       align-self: center;
     }
     p {
       font-size: 16px;
+    }
+
+    span {
+      padding: 2px 4px;
+      border-radius: 2px;
     }
   }
 }
@@ -67,8 +88,9 @@ export default {
     .inner-step {
       position: absolute;
       bottom: 0;
-      width: 70%;
+      width: 80%;
       margin-top: 90%;
+      font-size: 12px;
     }
   }
 }

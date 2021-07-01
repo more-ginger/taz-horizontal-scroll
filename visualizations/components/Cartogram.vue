@@ -1,6 +1,12 @@
 <template>
   <div ref="container" class="visualization-container">
     <svg :width="sizes.width" :height="sizes.height" class="cartogram">
+      <rect
+        :width="sizes.width"
+        :height="sizes.height"
+        fill="white"
+        @mouseenter="toggleCountryLabel({})"
+      />
       <g :transform="`translate(${-margins.left / 4}, ${transformTop})`">
         <g v-for="(element, e) in ParsedData" :key="e" :class="element.name">
           <rect
@@ -12,7 +18,12 @@
             @mouseenter="toggleCountryLabel(element)"
           />
         </g>
-        <g v-for="(element, e) in ParsedData" :key="`${e}-labels`" class="label-group" :class="{toggled: element === activeCountry}">
+        <g
+          v-for="(element, e) in ParsedData"
+          :key="`${e}-labels`"
+          class="label-group"
+          :class="{toggled: element === activeCountry}"
+        >
           <CartogramLabel :current-label="element" />
         </g>
       </g>
@@ -93,8 +104,6 @@ export default {
   },
   methods: {
     toggleCountryLabel (country) {
-      // const { activeSubRegions, step } = this
-      // const statusArrayLength = activeSubRegions.length
       this.activeCountry = country
       this.isEmpty = false
     },
