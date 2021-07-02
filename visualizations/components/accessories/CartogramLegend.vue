@@ -10,14 +10,14 @@
     </defs>
     <g class="gradient-bar" transform="translate(0, -50)">
       <text x="0px" y="10px">
-        Wasserstress
+        Wasserstress Index
       </text>
       <rect width="190px" height="9px" y="15px" fill="url(#linear-gradient)" rx="0" />
       <text x="0" y="40px">
-        Niedrig (0)
+        Sehr niedrig (0)
       </text>
       <text x="190px" y="40px" text-anchor="end">
-        Hohe (5)
+        Sehr hoch (5)
       </text>
     </g>
     <g class="no-data" transform="translate(0, 5)">
@@ -28,7 +28,7 @@
     </g>
     <g class="country" transform="translate(100, 5)">
       <text x="25px" y="11px">
-        = Land
+        = 1 Land
       </text>
       <rect width="14px" height="14px" x="0" y="0" />
     </g>

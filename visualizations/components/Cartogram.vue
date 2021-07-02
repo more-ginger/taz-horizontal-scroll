@@ -138,14 +138,14 @@ export default {
       this.sizes.height = height
       this.sizes.width = width
 
-      this.margins.top = width > 900 ? height / 12 : height / 6
+      this.margins.top = width > 900 ? height / 10 : height / 6
       this.margins.bottom = width > 900 ? height / 10 : height / 6
       this.margins.left = width > 900 ? width / 5 : width / 12
       this.margins.right = width > 900 ? width / 6 : width / 12
 
       this.cube = width < 624 ? 16 : 19
 
-      this.transformTop = width > 900 ? -90 : 50
+      this.transformTop = width > 900 ? -70 : 50
       this.transformLegend = width > 900
         ? `translate(30,${sizes.height - margins.bottom})`
         : `translate(${margins.left / 2},${sizes.height - margins.bottom / 1.5})`

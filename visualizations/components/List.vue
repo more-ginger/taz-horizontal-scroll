@@ -9,11 +9,25 @@
               v-for="(country, c) in countriesOrderedByImpact[region.d]"
               :key="c"
               class="single-country"
-              :data-tooltip="`${country.name} / ${country.score}`"
+              :data-tooltip="`${decoder(country.name)} / ${country.score}`"
             >
               <img :src="country.path" class="country-glyph">
             </div>
           </div>
+        </div>
+      </div>
+      <div class="legend-container">
+        <p>Wasserstress Index (0 = Sehr niedrig / 5 = Sehr hoch)</p>
+        <div class="legend-inner-container">
+          <span>0</span>
+          <div v-for="el in 5" :key="el">
+            <img :src="require(`../assets/img/${el - 1}.svg`)">
+          </div>
+          <span>5</span>
+          <div>
+            <img src="../assets/img/-9999.svg">
+          </div>
+          <span>No Data</span>
         </div>
       </div>
     </div>
@@ -109,6 +123,11 @@ export default {
       } else {
         return require('../assets/img/-9999.svg')
       }
+    },
+    decoder (str) {
+      const textArea = document.createElement('textarea')
+      textArea.innerHTML = str
+      return textArea.value
     }
   }
 }
@@ -120,7 +139,7 @@ export default {
     opacity: 0;
 
     background-color: rgba(255, 255, 255, 0.8);
-    padding: 1% 2.5%;
+    padding: 1% 2%;
     border-radius: 5px;
     pointer-events: none;
 
@@ -134,33 +153,53 @@ export default {
 
   .list-container {
     &.mobile-view {
-      padding-top: 26%;
+      padding-top: 20%;
     }
 
     .single-list {
 
       .inner-list {
         .outer-container {
-          margin: 0 2%;
+          margin: 0 0%;
           p {
             margin: 2px 0px 0px 5px;
             font-size: 12px;
           }
           .region-container {
-            margin-left: 5px;
+            // margin-left: 5px;
             display: inline-flex;
             flex-wrap: wrap;
             justify-content: left;
 
             .single-country {
               margin: 2px 2px 0px 2px;
-              width: 15px;
+              width: 12px;
 
               img {
                 width: 100%;
                 height: auto;
               }
             }
+          }
+        }
+      }
+
+      .legend-container {
+        margin-top: 10px;
+        border-top: 1px solid black;
+        p {
+          font-size: 10px;
+          margin-bottom: 2px;
+        }
+        .legend-inner-container {
+          font-size: 10px;
+          display: inline-flex;
+          span {
+            margin:0 5px;
+          }
+          img {
+            width: 12px;
+            margin:0 5px;
           }
         }
       }

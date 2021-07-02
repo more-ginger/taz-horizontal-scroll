@@ -3,31 +3,36 @@
     <div class="inner">
       <div class="scroll-inner-container">
         <article ref="scrolling" class="scrollable-div">
-          <Step :step="0">
-            Luise I would suggest having a short introduction here to explain readers what they are looking at.
-            I think it could be helpful for them. If you want I can provide a short text in english.
+          <Step :step="0" :optional-class="'bottom'">
+            Wasserstress ensteht, wenn Verfügbarkeit und Verbrauch im Missverhältnis stehen.
+            Wie knapp Wasser ist, ist sehr unterschiedlich, wie diese stilisierte Weltkarte zeigt.
+            Das Projekt <i>taz folgt dem Wasser</i> erzählt Beispiele von Konflikten und Lösungsansätzen
+            aus Entwicklungsprojekten.
           </Step>
-          <Step :step="1" :optional-class="'bottom larger'">
+          <Step :step="1" :optional-class="'bottom'">
             Der <span style="background-color: rgb(179, 139, 100);">Nahe Osten</span> und
             <span style="background-color: rgb(196, 158, 123);">Nordafrika</span> ist die wasserärmste Region der Welt –
             und ein weltweiter Brennpunkt für nicht-nachhaltigen Wasserverbrauch. Die Länder erproben neue Technologien,
             um mit dem Mangel umzugehen.
+            taz-Artikel:
             <a target="_blank" rel="noopener noreferrer" href="https://taz.de/Abwasser-in-Jordanien/!5760381/">
               Abwasser in Jordanien
             </a>
           </Step>
-          <Step :step="2" :optional-class="'bottom larger'">
+          <Step :step="2" :optional-class="'bottom'">
             600 Millionen der 1,38-Milliarden-Einwohner*innen in <span style="background-color: rgb(168, 124, 83);">Indien</span>
             leiden bereits unter akuter Wasserknappheit. In trockenen Gegenden zapfen Landwirt*innen das Grundwasser
             zur Bewässerung an. Gewässer sind oft stark verschmutzt, wie etwa der Fluss Ganges.
+            taz-Artikel:
             <a target="_blank" rel="noopener noreferrer" href="https://taz.de/Wasserschutz-in-Indien/!5761850/">
               Wasserschutz in Indien
             </a>
           </Step>
-          <Step :step="3" :optional-class="'top larger'">
+          <Step :step="3" :optional-class="isMobile ? 'bottom' : 'top'">
             Wem gehört das Wasser? In der <span style="background-color: rgb(179, 196, 213);">Nil-Region</span>
             entflammen Konflikte darüber, welcher Staat das Recht hat,
             den Fluss für seine Zwecke zu nutzen und damit anderen womöglich das Wasser abzugraben.
+            taz-Artikel:
             <a href="https://taz.de/Konflikt-um-Staudamm-in-Uganda/!5747732/">
               Konflikt um Staudamm in Uganda
             </a> /
@@ -35,12 +40,13 @@
               Blauer Nil in Sudan
             </a>
           </Step>
-          <Step :step="4" :optional-class="'bottom larger'">
+          <Step :step="4" :optional-class="isMobile ? 'top' : 'bottom'">
             <span style="background-color: rgb(114, 167, 218);">Kolumbien</span>
             und <span style="background-color: rgb(152, 184, 215);">Bolivien</span>
             haben vergleichweise wenig Wasserstress – die Situation ist dort
             besser als zum Beispiel in Deutschland. Doch Schutzgebiete fallen Landraub zum Opfer,
             Gewässer drohen zu verschmutzen – und Naturschützer*innen leben gefährlich.
+            taz-Artikel:
             <a target="_blank" rel="noopener noreferrer" href="https://taz.de/Zerstoerte-Schutzgebiete-in-Kolumbien/!5723085/">
               Zerstörte Schutzgebiete in Kolumbien
             </a>
@@ -52,26 +58,14 @@
       </div>
       <div class="visualization-container">
         <div class="title-container" :class="{'mobile-view': isMobile }">
-          <h4>Überblick den Wasserstress in den Ländern</h4>
+          <h4>Wo das Wasser fehlt</h4>
           <div class="details-container">
             <div class="arrows-container">
               <div class="arrows-inner">
-                <img
-                  id="left"
-                  :class="{'active-arrow': step !== 0}"
-                  src="../assets/img/left.png"
-                  @click="changeStep('left')"
-                >
                 <p>
-                  Klicken / blättern Sie zur Seite
-                  ({{ step }} / {{ stepsList.length - 1 }})
+                  Wasserstress im weltweiten Vergleich
+                  [{{ step }} / {{ stepsList.length - 1 }}]
                 </p>
-                <img
-                  id="right"
-                  :class="{'active-arrow': step !== 5}"
-                  src="../assets/img/right.png"
-                  @click="changeStep('right')"
-                >
               </div>
             </div>
           </div>
@@ -81,13 +75,25 @@
             <h1>{{ step }}</h1>
           </div>
         </slot>
+        <img
+          id="left"
+          :class="{'active-arrow': step !== 0}"
+          src="../assets/img/left.png"
+          @click="changeStep('left')"
+        >
+        <img
+          id="right"
+          :class="{'active-arrow': step !== 5}"
+          src="../assets/img/right.png"
+          @click="changeStep('right')"
+        >
         <div class="source-container">
           <p>
             [<a
               target="_blank"
               rel="noopener noreferrer"
               href="https://www.wri.org/data/water-stress-country"
-            >data source</a>]
+            >Quelle: WRI Aqueduct 2019</a>]
           </p>
         </div>
       </div>
@@ -171,8 +177,8 @@ export default {
 
       &.mobile-view {
         .title-container {
-            h4 { font-size: 1rem; }
-            h5 { font-size: 12px; }
+            h4 { font-size: 1rem; font-family: taz_xbold, logo-small; }
+            h5 { font-size: 12px; font-family: DroidSerif, logo; }
           }
         }
 
@@ -200,28 +206,8 @@ export default {
           width: 100%;
 
           p {
-            font-size: 12px;
+            font-size: 14px;
             margin-bottom: 0;
-          }
-
-          .arrows-container {
-
-            .arrows-inner {
-              display: inline-flex;
-             img {
-                width: 4%;
-                height: auto;
-                margin: 10px;
-                cursor: pointer;
-                opacity: 0.2;
-                margin-top: 3px;
-
-                &.active-arrow {
-                  opacity: 1;
-                }
-            }
-
-            }
           }
         }
 
@@ -230,31 +216,51 @@ export default {
           margin: 0 auto;
           margin-top: 15px;
           h4 {
-          text-align: center;
-          font-size: 0.9rem;
+          text-align: left;
+          font-size: 1rem;
           }
           p {
-            font-size: 0.6rem;
-            text-align: center;
+            font-size: 0.7rem;
+            // text-align: center;
           }
           .details-container {
               .arrows-container {
                 .arrows-inner {
+                  text-align: left;
                   margin: 0 auto;
-                  width: 90%;
-                  padding-left: 5%;
+                  width: 100%;
+                  // padding-left: 5%;
                   font-size: 10px;
-
-                  img {
-                    width: 5% !important;
-                    height: auto;
-                    position: relative;
-                  }
                 }
             }
           }
         }
       }
+
+      img#left, img#right {
+        width: 5% !important;
+        height: auto;
+        position: absolute;
+        z-index: 999;
+        opacity: 0.2;
+        pointer-events: all;
+
+       &.active-arrow {
+          opacity: 1;
+          cursor: pointer;
+        }
+      }
+
+      img#right {
+        top: 40%;
+        right: 0;
+      }
+
+      img#left {
+        top: 40%;
+        left: 0;
+      }
+
       .source-container {
         position: absolute;
         right: 0;
@@ -270,10 +276,10 @@ export default {
       pointer-events: none;
       padding: 1.5rem 1rem 1.5rem 1rem;
 
-      .scrollable-div {
+      article.scrollable-div {
         height: 99%;
         display: inline-flex;
-        padding: 0 40% 0 5%;
+        padding: 0 40% 0 30%;
         box-sizing: content-box;
         /* Prevent vertical scroll if container is too tall*/
         overflow-y: hidden;
@@ -302,8 +308,9 @@ export default {
   .scroll-content {
     .inner {
       .scroll-inner-container {
-          article {
-            padding: 40% 0 5%;
+          article.scrollable-div {
+            height: 90%;
+            padding: 40% 0 0;
           }
       }
     }

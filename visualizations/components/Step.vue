@@ -50,19 +50,15 @@ export default {
 
   .inner-step {
     pointer-events: all;
-    max-width: 70%;
+    max-width: 82%;
     background: rgba(255, 255, 255, 0.8);
     border: 1px solid black;
     padding: 10px;
-    margin-top: 50%;
+    margin-top: 70%;
     margin-left: 40px;
 
-    &.larger {
-      max-width: 90%;
-    }
-
     &.bottom {
-      margin-top: 60%;
+      margin-top: 80%;
     }
 
     &.top {
@@ -87,11 +83,33 @@ export default {
   .step {
     .inner-step {
       position: absolute;
-      bottom: 0;
+      top: 10%;
       width: 80%;
-      margin-top: 90%;
+      margin-top: 50%;
       font-size: 12px;
+
+      &.top {
+        top: 0%;
+        margin-top: 0%;
+      }
+
+      &.bottom {
+        top: 30%;
+        margin-top: 10%;
+      }
     }
   }
 }
+
+@media only screen and (min-width: 900px) {
+  .step {
+    .inner-step {
+      margin-top: 30%;
+      max-width: 50%;
+
+      &.bottom {
+      margin-top: 50%;
+    }
+    }
+  }}
 </style>
