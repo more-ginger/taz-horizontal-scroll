@@ -3,7 +3,7 @@
     <div class="inner">
       <div class="scroll-inner-container">
         <article ref="scrolling" class="scrollable-div">
-          <Step :step="0" :optional-class="'bottom'">
+          <Step :step="0" class="first">
             Wasserstress ensteht, wenn Verfügbarkeit und Verbrauch im Missverhältnis stehen.
             Wie knapp Wasser ist, ist sehr unterschiedlich, wie diese stilisierte Weltkarte zeigt.
             Das Projekt <i>taz folgt dem Wasser</i> erzählt Beispiele von Konflikten und Lösungsansätzen
@@ -279,7 +279,7 @@ export default {
       article.scrollable-div {
         height: 99%;
         display: inline-flex;
-        padding: 0 40% 0 30%;
+        padding: 0 40% 0 0%;
         box-sizing: content-box;
         /* Prevent vertical scroll if container is too tall*/
         overflow-y: hidden;

@@ -45,7 +45,7 @@ export default {
   height: 100%;
   display: inline-table;
   flex-direction: row;
-  padding: 0 25vw 0 0;
+  padding: 0 30vw 0 0;
   position: relative;
 
   .inner-step {
@@ -58,19 +58,13 @@ export default {
     margin-left: 40px;
 
     &.bottom {
-      margin-top: 80%;
+      margin-top: 75%;
     }
 
     &.top {
       margin-top: 15%;
     }
-
-    &.center {
-      align-self: center;
-    }
-    p {
-      font-size: 16px;
-    }
+    font-size: 14px;
 
     span {
       padding: 2px 4px;
