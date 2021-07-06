@@ -44,7 +44,7 @@ export default {
 
 <style lang="scss" scoped>
 g { pointer-events: none; }
-text { font-size: 12px; }
+text { font-size: 12px; font-family: 'AktivGrotesk' !important; }
 
 rect {
   // stroke-width: 0.5;

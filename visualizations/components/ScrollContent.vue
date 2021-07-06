@@ -9,7 +9,7 @@
             Das Projekt <i>taz folgt dem Wasser</i> erzählt Beispiele von Konflikten und Lösungsansätzen
             aus Entwicklungsprojekten.
           </Step>
-          <Step :step="1" :optional-class="'bottom'">
+          <Step :step="1" :optional-class="''">
             Der <span style="background-color: rgb(179, 139, 100);">Nahe Osten</span> und
             <span style="background-color: rgb(196, 158, 123);">Nordafrika</span> ist die wasserärmste Region der Welt –
             und ein weltweiter Brennpunkt für nicht-nachhaltigen Wasserverbrauch. Die Länder erproben neue Technologien,
@@ -19,7 +19,7 @@
               Abwasser in Jordanien
             </a>
           </Step>
-          <Step :step="2" :optional-class="'bottom'">
+          <Step :step="2" :optional-class="''">
             600 Millionen der 1,38-Milliarden-Einwohner*innen in <span style="background-color: rgb(168, 124, 83);">Indien</span>
             leiden bereits unter akuter Wasserknappheit. In trockenen Gegenden zapfen Landwirt*innen das Grundwasser
             zur Bewässerung an. Gewässer sind oft stark verschmutzt, wie etwa der Fluss Ganges.
@@ -88,6 +88,7 @@
           @click="changeStep('right')"
         >
         <div class="source-container">
+          <img class="logo" src="../assets/img/taz_logo.svg">
           <p>
             [<a
               target="_blank"
@@ -263,9 +264,21 @@ export default {
 
       .source-container {
         position: absolute;
-        right: 0;
+        left: 0;
         bottom: 0;
         font-size: 12px;
+        display: inline-flex;
+        width: 50%;
+        text-align: right;
+
+        .logo {
+          width: 15%;
+          margin-right: 5px;
+        }
+
+        p {
+          margin: 0;
+        }
       }
     }
 
@@ -312,6 +325,17 @@ export default {
             height: 90%;
             padding: 40% 0 0;
           }
+      }
+
+      .visualization-container {
+      .source-container {
+      width: 100%;
+
+        .logo {
+            width: 10%;
+        }
+        }
+
       }
     }
   }

@@ -40,6 +40,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .step {
+  font-family: 'AktivGrotesk' !important;
   // border-right: 1px dashed black;
   width: 100vw;
   height: 100%;

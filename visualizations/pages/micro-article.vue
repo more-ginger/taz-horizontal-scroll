@@ -25,7 +25,25 @@ export default {
 </script>
 
 <style lang="scss">
+@font-face {
+  font-family: AktivGrotesk_bold;
+  src: url('../assets/fonts/AktivGrotesk_Md.ttf');
+}
+
+@font-face {
+  font-family: AktivGrotesk;
+  src: url('../assets/fonts/AktivGrotesk_Rg.ttf');
+}
+
 html {
+  h4, p {
+    font-family: 'AktivGrotesk_bold' !important;
+  }
+
+  text, svg {
+    font-family: 'AktivGrotesk' !important;
+  }
+
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
 
