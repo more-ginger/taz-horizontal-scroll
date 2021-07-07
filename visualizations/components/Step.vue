@@ -76,10 +76,11 @@ export default {
 
 @media only screen and (max-width: 375px) {
   .step {
+    width: 110vw;
     .inner-step {
       position: absolute;
-      top: 10%;
-      width: 80%;
+      top: 0%;
+      width: 65%;
       margin-top: 50%;
       font-size: 12px;
 

@@ -9,7 +9,7 @@
             Das Projekt <i>taz folgt dem Wasser</i> erzählt Beispiele von Konflikten und Lösungsansätzen
             aus Entwicklungsprojekten.
           </Step>
-          <Step :step="1" :optional-class="''">
+          <Step :step="1">
             Der <span style="background-color: rgb(179, 139, 100);">Nahe Osten</span> und
             <span style="background-color: rgb(196, 158, 123);">Nordafrika</span> ist die wasserärmste Region der Welt –
             und ein weltweiter Brennpunkt für nicht-nachhaltigen Wasserverbrauch. Die Länder erproben neue Technologien,
@@ -19,7 +19,7 @@
               Abwasser in Jordanien
             </a>
           </Step>
-          <Step :step="2" :optional-class="''">
+          <Step :step="2">
             600 Millionen der 1,38-Milliarden-Einwohner*innen in <span style="background-color: rgb(168, 124, 83);">Indien</span>
             leiden bereits unter akuter Wasserknappheit. In trockenen Gegenden zapfen Landwirt*innen das Grundwasser
             zur Bewässerung an. Gewässer sind oft stark verschmutzt, wie etwa der Fluss Ganges.
@@ -40,7 +40,7 @@
               Blauer Nil in Sudan
             </a>
           </Step>
-          <Step :step="4" :optional-class="isMobile ? 'top' : 'bottom'">
+          <Step :step="4" :optional-class="isMobile ? 'top' : ''">
             <span style="background-color: rgb(114, 167, 218);">Kolumbien</span>
             und <span style="background-color: rgb(152, 184, 215);">Bolivien</span>
             haben vergleichweise wenig Wasserstress – die Situation ist dort
@@ -88,7 +88,6 @@
           @click="changeStep('right')"
         >
         <div class="source-container">
-          <img class="logo" src="../assets/img/taz_logo.svg">
           <p>
             [<a
               target="_blank"
@@ -97,6 +96,7 @@
             >Quelle: WRI Aqueduct 2019</a>]
           </p>
         </div>
+        <img class="logo" src="../assets/img/taz_logo.svg">
       </div>
     </div>
   </div>
@@ -264,21 +264,25 @@ export default {
 
       .source-container {
         position: absolute;
-        left: 0;
+        right: 0;
         bottom: 0;
         font-size: 12px;
         display: inline-flex;
-        width: 50%;
+        // width: 50%;
         text-align: right;
-
-        .logo {
-          width: 15%;
-          margin-right: 5px;
-        }
 
         p {
           margin: 0;
         }
+      }
+
+      .logo {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50px;
+        margin-right: 5px;
+        margin-top: 2.5%;
       }
     }
 
@@ -322,18 +326,15 @@ export default {
     .inner {
       .scroll-inner-container {
           article.scrollable-div {
-            height: 90%;
+            height: 80%;
             padding: 40% 0 0;
           }
       }
 
       .visualization-container {
-      .source-container {
-      width: 100%;
-
-        .logo {
-            width: 10%;
-        }
+      .logo {
+          width: 40px;
+          margin-top: 4.5%;
         }
 
       }
