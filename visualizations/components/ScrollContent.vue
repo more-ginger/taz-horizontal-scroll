@@ -64,7 +64,7 @@
               <div class="arrows-inner">
                 <p>
                   Wasserstress im weltweiten Vergleich
-                  [{{ step }} / {{ stepsList.length - 1 }}]
+                  [{{ step + 1 }} / {{ stepsList.length }}]
                 </p>
               </div>
             </div>
@@ -273,6 +273,7 @@ export default {
 
         p {
           margin: 0;
+          margin-bottom: 25px;
         }
       }
 

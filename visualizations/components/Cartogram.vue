@@ -148,7 +148,7 @@ export default {
       this.transformTop = width > 900 ? -70 : 50
       this.transformLegend = width > 900
         ? `translate(30,${sizes.height - margins.bottom})`
-        : `translate(${margins.left / 2},${sizes.height - margins.bottom / 1.5})`
+        : `translate(${margins.left / 2},${sizes.height - margins.bottom / 2.5})`
     }
   }
 }
