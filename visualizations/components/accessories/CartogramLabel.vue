@@ -1,7 +1,7 @@
 <template>
   <g :transform="`translate(${currentLabel.x - backgroundWidth / 2}, ${currentLabel.y - 10})`">
     <rect :width="backgroundWidth" height="20" x="9.5" y="-22.5" rx="5" />
-    <text :id="currentLabel.iso_a3" x="12" y="-8.5">
+    <text :id="currentLabel.iso_a3" x="15" y="-8.5">
       {{ decoder(currentLabel.name) }} / {{ renderedLabel }}
     </text>
   </g>
@@ -30,7 +30,7 @@ export default {
   mounted () {
     const textNode = document.getElementById(this.currentLabel.iso_a3)
     const bb = textNode.getBBox()
-    this.backgroundWidth = bb.width + 5
+    this.backgroundWidth = bb.width + 15
   },
   methods: {
     decoder (str) {

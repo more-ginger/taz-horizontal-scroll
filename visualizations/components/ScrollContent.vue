@@ -33,14 +33,14 @@
             entflammen Konflikte darüber, welcher Staat das Recht hat,
             den Fluss für seine Zwecke zu nutzen und damit anderen womöglich das Wasser abzugraben.
             taz-Artikel:
-            <a href="https://taz.de/Konflikt-um-Staudamm-in-Uganda/!5747732/">
+            <a target="_blank" rel="noopener noreferrer" href="https://taz.de/Konflikt-um-Staudamm-in-Uganda/!5747732/">
               Konflikt um Staudamm in Uganda
             </a> /
             <a target="_blank" rel="noopener noreferrer" href="https://taz.de/Blauer-Nil-in-Sudan/!5762230/">
               Blauer Nil in Sudan
             </a>
           </Step>
-          <Step :step="4" :optional-class="isMobile ? 'top' : ''">
+          <Step :step="4" :optional-class="isMobile ? 'top' : 'left'">
             <span style="background-color: rgb(114, 167, 218);">Kolumbien</span>
             und <span style="background-color: rgb(152, 184, 215);">Bolivien</span>
             haben vergleichweise wenig Wasserstress – die Situation ist dort
@@ -239,7 +239,7 @@ export default {
       }
 
       img#left, img#right {
-        width: 5% !important;
+        width: 5% !important; max-width: 38px;
         height: auto;
         position: absolute;
         z-index: 999;
@@ -342,5 +342,4 @@ export default {
     }
   }
 }
-
 </style>

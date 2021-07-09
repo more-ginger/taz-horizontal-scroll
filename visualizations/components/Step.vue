@@ -100,12 +100,17 @@ export default {
 @media only screen and (min-width: 900px) {
   .step {
     .inner-step {
-      margin-top: 30%;
+      margin-left: 20%;
+      margin-top: 15%;
       max-width: 50%;
 
       &.bottom {
-      margin-top: 50%;
-    }
+        margin-top: 50%;
+      }
+
+      &.left {
+        margin-left: 50%;
+      }
     }
   }}
 </style>
