@@ -333,6 +333,20 @@ export default {
       }
 
       .visualization-container {
+      padding: 0 10%;
+
+      img#left {
+        left: 2.5%;
+      }
+
+      img#right {
+        right: 4%;
+      }
+
+      .source-container {
+        right: 5%;
+      }
+
       .logo {
           width: 40px;
           margin-top: 4.5%;
