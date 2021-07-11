@@ -322,7 +322,7 @@ export default {
   }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 450px) {
   .scroll-content {
     .inner {
       .scroll-inner-container {

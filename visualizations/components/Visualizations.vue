@@ -35,7 +35,7 @@ export default {
     checkContainerSizes () {
       const iFrameWidth = this.$el.children[0].clientWidth
 
-      if (iFrameWidth <= 375) {
+      if (iFrameWidth <= 450) {
         this.isMobile = true
         this.$store.commit('UpdatescrollyTellingStatus', false)
         this.$store.commit('updateViewportStatus', true)

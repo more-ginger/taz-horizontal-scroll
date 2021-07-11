@@ -74,7 +74,7 @@ export default {
   }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 450px) {
   .step {
     width: 110vw;
     .inner-step {
