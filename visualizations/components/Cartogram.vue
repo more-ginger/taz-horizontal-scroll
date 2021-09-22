@@ -37,8 +37,11 @@ import { scaleLinear, scaleDiverging } from 'd3-scale'
 import { extent } from 'd3-array'
 import { rgb } from 'd3-color'
 import { interpolateRgb } from 'd3-interpolate'
+import countries from 'i18n-iso-countries'
 import CartogramLegend from './accessories/CartogramLegend.vue'
 import CartogramLabel from './accessories/CartogramLabel.vue'
+
+countries.registerLocale(require('i18n-iso-countries/langs/de.json'))
 
 export default {
   name: 'Cartogram',
@@ -77,7 +80,8 @@ export default {
           y: this.xScale(d.y),
           fill: this.changeFillColor(this.step, d),
           score: d.score,
-          iso_a3: d.iso_a3
+          iso_a3: d.iso_a3,
+          label: countries.getName(d.iso_a3, 'de')
         }
       }).filter(function (el) {
         return el.name !== undefined
@@ -101,6 +105,7 @@ export default {
   },
   mounted () {
     this.calcSvgSizes()
+    // console.log(this.ParsedData)
   },
   methods: {
     toggleCountryLabel (country) {

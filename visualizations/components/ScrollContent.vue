@@ -239,7 +239,7 @@ export default {
       }
 
       img#left, img#right {
-        width: 5% !important; max-width: 38px;
+        width: 5% !important; max-width: 20px;
         height: auto;
         position: absolute;
         z-index: 999;
