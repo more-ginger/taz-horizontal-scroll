@@ -22,6 +22,7 @@
     "lodash": "^4.17.21",
     "node-sass": "^5.0.0",
     "nuxt": "^2.15.3",
+    "vue-server-renderer": "^2.6.14",
     "yarn": "^1.22.10"
   },
   "devDependencies": {
@@ -34,7 +35,7 @@
     "fibers": "^5.0.0",
     "sass": "^1.32.11",
     "sass-loader": "10",
-    "vue": "^2.5.17",
-    "vue-template-compiler": "^2.5.17"
+    "vue": "^2.6.14",
+    "vue-template-compiler": "^2.6.14"
   }
 }
