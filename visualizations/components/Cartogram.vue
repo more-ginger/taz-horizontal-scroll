@@ -105,7 +105,6 @@ export default {
   },
   mounted () {
     this.calcSvgSizes()
-    // console.log(this.ParsedData)
   },
   methods: {
     toggleCountryLabel (country) {

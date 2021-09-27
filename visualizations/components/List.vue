@@ -95,9 +95,6 @@ export default {
         const data = groupedData[region.d].sort((a, b) => {
           return b.score - a.score
         })
-
-        // const currentRegion = GermanRegions[r]
-        // console.log(d)
         obj[region.d] = this.filterData(data)
       })
       return obj
