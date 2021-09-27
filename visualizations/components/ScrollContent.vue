@@ -266,7 +266,7 @@ export default {
         position: absolute;
         right: 0;
         bottom: 0;
-        font-size: 12px;
+        font-size: 10px;
         display: inline-flex;
         // width: 50%;
         text-align: right;
@@ -328,12 +328,12 @@ export default {
       .scroll-inner-container {
           article.scrollable-div {
             height: 80%;
-            padding: 40% 0 0;
+            padding: 20% 0 0;
           }
       }
 
       .visualization-container {
-      padding: 0 10%;
+      padding: 0 15%;
 
       img#left {
         left: 2.5%;

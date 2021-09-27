@@ -3,13 +3,13 @@
     <div class="first-row single-list" :class="{'mobile-view': isMobile }">
       <div class="inner-list">
         <div v-for="(region, r) in MostAffectedRegions" :key="r" class="outer-container">
-          <p>{{ region.d }}</p>
+          <p>{{ GermanRegions[r] }}</p>
           <div class="region-container">
             <div
               v-for="(country, c) in countriesOrderedByImpact[region.d]"
               :key="c"
               class="single-country"
-              :data-tooltip="`${decoder(country.name)} / ${country.score}`"
+              :data-tooltip="`${decoder(country.label)} / ${country.score}`"
             >
               <img :src="country.path" class="country-glyph">
             </div>
@@ -28,6 +28,7 @@
             <img src="../assets/img/-9999.svg">
           </div>
           <span>No Data</span>
+          <span><img src="../assets/img/4.svg"> = Land</span>
         </div>
       </div>
     </div>
@@ -37,6 +38,9 @@
 import { mapState } from 'vuex'
 import { uniq, groupBy } from 'lodash'
 import { mean } from 'd3-array'
+import countries from 'i18n-iso-countries'
+
+countries.registerLocale(require('i18n-iso-countries/langs/de.json'))
 
 export default {
   name: 'List',
@@ -48,6 +52,11 @@ export default {
     isMobile: {
       type: Boolean,
       default: false
+    }
+  },
+  data () {
+    return {
+      GermanRegions: ['Asien', 'Afrika', 'Europa', 'Ozeanien', 'Amerika', 'Antartiks']
     }
   },
   computed: {
@@ -82,14 +91,15 @@ export default {
     countriesOrderedByImpact () {
       const groupedData = groupBy(this.waterStress, 'region')
       const obj = {}
-
-      this.MostAffectedRegions.forEach((region) => {
+      this.MostAffectedRegions.forEach((region, r) => {
         const data = groupedData[region.d].sort((a, b) => {
           return b.score - a.score
         })
+
+        // const currentRegion = GermanRegions[r]
+        // console.log(d)
         obj[region.d] = this.filterData(data)
       })
-
       return obj
     }
   },
@@ -99,7 +109,8 @@ export default {
         return {
           name: d.name,
           score: d.score !== -9999 ? d.score : 'No data',
-          path: this.changeImgSrc(this.step, d)
+          path: this.changeImgSrc(this.step, d),
+          label: countries.getName(d.iso_a3, 'de')
         }
       })
     },

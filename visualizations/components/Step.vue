@@ -105,7 +105,7 @@ export default {
       max-width: 50%;
 
       &.bottom {
-        margin-top: 50%;
+        margin-top: 0%;
       }
 
       &.left {
