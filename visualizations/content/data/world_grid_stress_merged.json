@@ -718,13 +718,13 @@
   "rank": 19,
   "label": "High (40-80%)"
 }, {
-  "name": "Palestine",
-  "iso_a3": "PSX",
+  "name": "West Bank and Gaza Strip",
+  "iso_a3": "PSE",
   "region": "Asia",
   "x": 17,
   "y": 10,
   "subRegion": "Western Asia",
-  "score": -9999,
+  "score": 4.60,
   "DGWscore": null,
   "IRRGWscore": null,
   "INDGWscore": null,
@@ -3079,4 +3079,5 @@
   "population_2019_million": 17.297495,
   "rank": 72,
   "label": "Low - Medium (10-20%)"
-}]
+}
+]
